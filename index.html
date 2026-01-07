@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>AutoScale | פורטפוליו אוטומציות, CRM ו WhatsApp</title>
-  <meta name="description" content="AutoScale בונה מערכות CRM, צאט בוט WhatsApp ואוטומציות מורכבות שמורידות עבודה ידנית ומגדילות סגירות." />
+  <title>AutoScale | CRM + WhatsApp + אוטומציות</title>
+  <meta name="description" content="AutoScale בונה מערכות CRM ופתרונות WhatsApp ואוטומציות מורכבות: קליטת לידים, פולואפ, חוזים וחתימה דיגיטלית, מיילים אוטומטיים, תיאום פגישות ועוד." />
   <style>
     :root{
       --bg:#0b0f17;
@@ -33,24 +33,25 @@
       padding:18px; border:1px solid var(--border); border-radius:18px; background:rgba(18,26,42,.72); box-shadow:var(--shadow);
       backdrop-filter: blur(8px);
     }
-    .brand{
-      display:flex; align-items:flex-start; gap:12px; flex: 1 1 520px;
-    }
+    .brand{ display:flex; align-items:flex-start; gap:12px; flex: 1 1 560px; }
     .logo{
       width:44px; height:44px; border-radius:14px;
       border:1px solid rgba(106,166,255,.35);
       background: linear-gradient(135deg, rgba(106,166,255,.25), rgba(124,255,166,.12));
       display:flex; align-items:center; justify-content:center;
-      font-weight:700; letter-spacing:.5px;
+      font-weight:800; letter-spacing:.4px;
+      flex: 0 0 auto;
     }
     .title h1{ margin:0 0 6px; font-size:22px; letter-spacing:.2px; }
-    .title p{ margin:0; color:var(--muted); line-height:1.5; max-width: 62ch; }
+    .title p{ margin:0; color:var(--muted); line-height:1.6; max-width: 70ch; }
+    .hint{ color:var(--muted); font-size:12px; margin-top:8px; line-height:1.6; }
     .pillbar{ display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
     .pill{
       border:1px solid var(--border); background:rgba(15,22,38,.7);
       padding:8px 10px; border-radius:999px; font-size:12px; color:var(--muted);
     }
-    .pill strong{ color:var(--text); font-weight:600; }
+    .pill strong{ color:var(--text); font-weight:700; }
+    .topCta{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:12px; }
     .controls{
       display:flex; gap:10px; flex-wrap:wrap; width:100%;
       margin-top:14px;
@@ -90,7 +91,9 @@
     }
     @media (max-width: 900px){ .col{ grid-column: span 12; } }
     .col h3{ margin:0 0 6px; font-size:14px; }
-    .col p{ margin:0; color:var(--muted); font-size:13px; line-height:1.5; }
+    .col p{ margin:0; color:var(--muted); font-size:13px; line-height:1.55; }
+    .bullets{ margin:10px 0 0; padding:0 18px 0 0; color:var(--muted); font-size:13px; line-height:1.7; }
+    .bullets li{ margin:6px 0; }
     .chips{ display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; }
     .chip{
       font-size:12px; padding:6px 8px; border-radius:999px;
@@ -127,7 +130,7 @@
     .content{ padding:14px; }
     .toprow{ display:flex; justify-content:space-between; gap:10px; align-items:flex-start; }
     .content h3{ margin:0; font-size:16px; }
-    .meta{ margin-top:6px; color:var(--muted); font-size:13px; line-height:1.45; }
+    .meta{ margin-top:6px; color:var(--muted); font-size:13px; line-height:1.5; }
     .actions{ display:flex; gap:10px; flex-wrap:wrap; margin-top:12px; }
 
     .btn{
@@ -201,11 +204,7 @@
     }
     @media (max-width: 900px){ .shot{ grid-column: span 12; } }
     .shot img{ width:100%; height:auto; display:block; }
-    .shot .cap{ padding:10px; color:var(--muted); font-size:12px; line-height:1.45; }
-    .hint{ color:var(--muted); font-size:12px; margin-top:8px; line-height:1.5; }
-    .topCta{
-      display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:12px;
-    }
+    .shot .cap{ padding:10px; color:var(--muted); font-size:12px; line-height:1.5; }
   </style>
 </head>
 
@@ -214,277 +213,3 @@
     <header>
       <div class="brand">
         <div class="logo">AS</div>
-        <div class="title">
-          <h1>AutoScale</h1>
-          <p>בונים מערכות CRM ופתרונות WhatsApp שמורידים עבודה ידנית, משפרים תהליכים ומביאים יותר שליטה בעסק. כאן תראה דוגמאות אמיתיות של מסכים, תהליכים ושיחות.</p>
-
-          <div class="topCta">
-            <a id="waTop" class="btn good" href="#" target="_blank" rel="noopener">דברו איתי ב WhatsApp</a>
-            <span class="pill"><strong>פוקוס:</strong> CRM + WhatsApp</span>
-            <span class="pill"><strong>גם:</strong> חוזים, חתימות, מסמכים, מיילים ואוטומציות</span>
-          </div>
-
-          <div class="hint">הערה: אני מציג רק חומרים בלי מידע רגיש. כל שם לקוח, מספר טלפון או מזהה מטושטש.</div>
-        </div>
-      </div>
-
-      <div class="pillbar">
-        <div class="pill"><strong>קטגוריות:</strong> CRM, WhatsApp, חוזים, אינטגרציות</div>
-        <div class="pill"><strong>סטנדרט:</strong> יציבות, לוגים, טיפול בקצוות</div>
-      </div>
-
-      <div class="controls">
-        <input id="search" class="search" type="search" placeholder="חיפוש פרויקטים, לדוגמה monday, wati, lead, חוזה..." />
-        <select id="filter">
-          <option value="all">כל הקטגוריות</option>
-          <option value="CRM">CRM</option>
-          <option value="Chatbot">WhatsApp</option>
-          <option value="Contracts">חוזים וחתימה</option>
-          <option value="Integrations">אינטגרציות</option>
-          <option value="Other">אחר</option>
-        </select>
-      </div>
-    </header>
-
-    <section class="section">
-      <h2>מה אנחנו עושים</h2>
-      <div class="cols">
-        <div class="col">
-          <h3>מערכות CRM ותהליכי מכירה</h3>
-          <p>הקמה וסידור CRM, קליטת לידים אוטומטית, סטטוסים, משימות, תיוגים, הצעות מחיר, התראות וניהול תהליך מקצה לקצה.</p>
-          <div class="chips">
-            <span class="chip">monday.com Official Partner</span>
-            <span class="chip">Fireberry</span>
-            <span class="chip">ClickUp</span>
-            <span class="chip">Airtable</span>
-            <span class="chip">Smartsheet</span>
-            <span class="chip">GHL</span>
-          </div>
-        </div>
-
-        <div class="col">
-          <h3>WhatsApp וצאט בוטים</h3>
-          <p>בוטים ל FAQ, סינון לידים, פתיחת תקלות, פולואפ, דיוור WhatsApp, הודעות לפי סטטוס, והעברה לנציג אנושי כשצריך.</p>
-          <div class="chips">
-            <span class="chip">WATI Official Partner</span>
-            <span class="chip">ManyChat Official Partner</span>
-            <span class="chip">WhatsApp רשמי</span>
-            <span class="chip">Green API</span>
-            <span class="chip">API Business Cloud</span>
-          </div>
-        </div>
-
-        <div class="col">
-          <h3>חוזים, חתימות ומעטפת מסמכים</h3>
-          <p>יצירת חוזה אוטומטית מתוך נתונים ב CRM, שליחת מעטפת לחתימה, איסוף מסמכים, מעקב סטטוסים ותזכורות אוטומטיות.</p>
-          <div class="chips">
-            <span class="chip">EasyDoc</span>
-            <span class="chip">שליחת מעטפת מסמכים</span>
-            <span class="chip">איסוף מסמכים</span>
-            <span class="chip">סנכרון סטטוסים</span>
-          </div>
-        </div>
-
-        <div class="col">
-          <h3>אוטומציות מורכבות ואינטגרציות</h3>
-          <p>חיבור בין מערכות, קליטת מיילים ויצירת לקוח או הצעת מחיר, תמלול וסיכום שיחות, תיאום פגישות אוטומטי, תהליכים מרובי שלבים עם בדיקות ולוגים.</p>
-          <div class="chips">
-            <span class="chip">Make</span>
-            <span class="chip">n8n</span>
-            <span class="chip">Zapier</span>
-            <span class="chip">Google Drive</span>
-            <span class="chip">Microsoft OneDrive</span>
-            <span class="chip">Calendly</span>
-            <span class="chip">Zoom</span>
-            <span class="chip">Google Meet</span>
-            <span class="chip">ChatGPT</span>
-            <span class="chip">Gemini</span>
-            <span class="chip">Claude</span>
-            <span class="chip">חשבוניות ירוקה</span>
-            <span class="chip">EasyCount</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <div id="grid" class="grid"></div>
-
-    <footer>
-      <div>רוצה משהו דומה לעסק שלך? שלח לי בקצרה איזה CRM אתה משתמש, מה מקור הלידים, ומה התוצאה שאתה רוצה. אני אחזור עם כיוון ברור.</div>
-      <div style="margin-top:10px;">
-        <a id="waBottom" class="btn good" href="#" target="_blank" rel="noopener">דברו איתי ב WhatsApp</a>
-      </div>
-    </footer>
-  </div>
-
-  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-label="גלריה">
-    <div class="modalbox">
-      <div class="modalhead">
-        <h4 id="modalTitle">גלריה</h4>
-        <button id="closeBtn" class="close">סגירה</button>
-      </div>
-      <div id="modalBody" class="gallery"></div>
-    </div>
-  </div>
-
-  <script>
-    // ====== הגדרות וואטסאפ ======
-    // החלף את המספר שלך בפורמט בינלאומי בלי פלוס, לדוגמה לישראל: 9725XXXXXXXX
-    const WHATSAPP_NUMBER = "9725XXXXXXXX";
-
-    // טקסט הודעה מוכן מראש
-    const WHATSAPP_PREFILL = "היי AutoScale, ראיתי את הפורטפוליו. אשמח לשיחה קצרה על CRM ו WhatsApp עבור העסק שלי. מה צריך ממני כדי להתחיל?";
-
-    function buildWhatsAppLink(){
-      const text = encodeURIComponent(WHATSAPP_PREFILL);
-      return `https://wa.me/${WHATSAPP_NUMBER}?text=${text}`;
-    }
-
-    document.getElementById("waTop").href = buildWhatsAppLink();
-    document.getElementById("waBottom").href = buildWhatsAppLink();
-
-    // ====== פרויקטים לדוגמה ======
-    // החלף כותרות, תיאורים ותמונות לפי מה שיש לך בפועל
-    // תמונות צריכות להיות ב: assets/screenshots/
-    const projects = [
-      {
-        title: "קליטת לידים ל CRM עם תיוג וחלוקה אוטומטית",
-        category: "CRM",
-        summary: "לידים מפייסבוק ואינסטגרם נכנסים ל CRM עם בדיקות, תיוג לפי מקור, שיוך לנציג, ומשימות פולואפ אוטומטיות.",
-        stack: ["monday.com", "Facebook Lead Ads", "Instagram", "Make", "Webhooks"],
-        shots: [
-          { src: "assets/screenshots/crm-flow-1.png", caption: "מיפוי שדות, ניקוי נתונים ובדיקות חובה לפני יצירת ליד." },
-          { src: "assets/screenshots/crm-board-1.png", caption: "תצוגת CRM עם סטטוסים, בעלות, תגים ותיעוד פעילות." }
-        ]
-      },
-      {
-        title: "WhatsApp בוט לסינון לידים והעברה לנציג",
-        category: "Chatbot",
-        summary: "בוט WhatsApp שמבצע שאלות סינון, שומר ב CRM, ושולח לנציג כשיש ליד חם או בקשה אנושית.",
-        stack: ["WhatsApp", "WATI", "ManyChat", "Make", "CRM"],
-        shots: [
-          { src: "assets/screenshots/wa-chat-1.png", caption: "שיחה לדוגמה: שאלות סינון, תשובות ותיוג ליד." },
-          { src: "assets/screenshots/wa-flow-1.png", caption: "ניתוב לפי כוונה, לוגים והעברה לנציג במקרה הצורך." }
-        ]
-      },
-      {
-        title: "חוזה מתוך CRM ושליחה לחתימה עם סטטוס",
-        category: "Contracts",
-        summary: "מייצר חוזה אוטומטית מתוך נתוני הלקוח וההצעה, שולח לחתימה ומעדכן סטטוס ב CRM כולל תזכורות.",
-        stack: ["EasyDoc", "E-sign", "CRM", "Make"],
-        shots: [
-          { src: "assets/screenshots/contract-template-1.png", caption: "תבנית חוזה עם משתנים וסעיפים דינמיים." },
-          { src: "assets/screenshots/contract-status-1.png", caption: "מעקב סטטוס חתימה ועדכונים אוטומטיים." }
-        ]
-      },
-      {
-        title: "תיאום פגישות אוטומטי עם Calendly ועדכון CRM",
-        category: "Integrations",
-        summary: "לקוח קובע פגישה לבד, נוצר אירוע, נשלחות הודעות אישור ותזכורת, ונפתח או מתעדכן כרטיס ב CRM.",
-        stack: ["Calendly", "Google Calendar", "Zoom", "CRM", "n8n"],
-        shots: [
-          { src: "assets/screenshots/calendly-1.png", caption: "עמוד קביעת פגישה עם סוגי פגישות וזמינות." },
-          { src: "assets/screenshots/meeting-flow-1.png", caption: "יצירת פגישה, שליחת הודעות ותיעוד מלא ב CRM." }
-        ]
-      }
-    ];
-
-    const grid = document.getElementById("grid");
-    const search = document.getElementById("search");
-    const filter = document.getElementById("filter");
-    const modal = document.getElementById("modal");
-    const modalTitle = document.getElementById("modalTitle");
-    const modalBody = document.getElementById("modalBody");
-    const closeBtn = document.getElementById("closeBtn");
-
-    function escapeHtml(str){
-      return String(str).replace(/[&<>"']/g, s => ({
-        "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
-      }[s]));
-    }
-
-    function cardTemplate(p, idx){
-      const shotCount = (p.shots || []).length;
-      const thumbText = shotCount ? `${shotCount} תמונות בגלריה` : "אין עדיין תמונות";
-      const chips = (p.stack || []).slice(0, 6).map(t => `<span class="chip">${escapeHtml(t)}</span>`).join("");
-
-      let badgeText = p.category;
-      if(p.category === "Chatbot") badgeText = "WhatsApp";
-      if(p.category === "Contracts") badgeText = "חוזים וחתימה";
-      if(p.category === "Integrations") badgeText = "אינטגרציות";
-
-      return `
-        <article class="card" data-idx="${idx}">
-          <div class="thumb"><span>${escapeHtml(thumbText)}</span></div>
-          <div class="content">
-            <div class="toprow">
-              <div>
-                <h3>${escapeHtml(p.title)}</h3>
-                <div class="meta">${escapeHtml(p.summary)}</div>
-              </div>
-              <span class="badge">${escapeHtml(badgeText)}</span>
-            </div>
-            <div class="chips">${chips}</div>
-            <div class="actions">
-              <button class="btn primary" ${shotCount ? "" : "disabled"} data-open="${idx}">צפייה בגלריה</button>
-              <a class="btn good" href="${buildWhatsAppLink()}" target="_blank" rel="noopener">דברו איתי ב WhatsApp</a>
-            </div>
-          </div>
-        </article>
-      `;
-    }
-
-    function render(){
-      const q = search.value.trim().toLowerCase();
-      const cat = filter.value;
-
-      const filtered = projects.filter(p => {
-        const hay = (p.title + " " + p.summary + " " + (p.stack || []).join(" ")).toLowerCase();
-        const matchesSearch = !q || hay.includes(q);
-        const matchesCat = (cat === "all") || (p.category === cat);
-        return matchesSearch && matchesCat;
-      });
-
-      grid.innerHTML = filtered.map((p) => cardTemplate(p, projects.indexOf(p))).join("");
-
-      grid.querySelectorAll("[data-open]").forEach(btn => {
-        btn.addEventListener("click", (e) => {
-          const idx = Number(e.currentTarget.getAttribute("data-open"));
-          openModal(idx);
-        });
-      });
-    }
-
-    function openModal(idx){
-      const p = projects[idx];
-      modalTitle.textContent = `${p.title} | גלריה`;
-
-      const shots = (p.shots || []).map(s => `
-        <div class="shot">
-          <img src="${escapeHtml(s.src)}" alt="צילום מסך" loading="lazy" />
-          <div class="cap">${escapeHtml(s.caption || "")}</div>
-        </div>
-      `).join("");
-
-      modalBody.innerHTML = shots || `<div style="padding:14px;color:var(--muted);">אין עדיין תמונות.</div>`;
-      modal.classList.add("open");
-      document.body.style.overflow = "hidden";
-    }
-
-    function closeModal(){
-      modal.classList.remove("open");
-      document.body.style.overflow = "";
-      modalBody.innerHTML = "";
-    }
-
-    closeBtn.addEventListener("click", closeModal);
-    modal.addEventListener("click", (e) => { if(e.target === modal) closeModal(); });
-    window.addEventListener("keydown", (e) => { if(e.key === "Escape") closeModal(); });
-
-    search.addEventListener("input", render);
-    filter.addEventListener("change", render);
-
-    render();
-  </script>
-</body>
-</html>
