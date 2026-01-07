@@ -4,61 +4,92 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>AutoScale | CRM + WhatsApp + אוטומציות</title>
-  <meta name="description" content="AutoScale בונה מערכות CRM ופתרונות WhatsApp ואוטומציות מורכבות: קליטת לידים, פולואפ, חוזים וחתימה דיגיטלית, מיילים אוטומטיים, תיאום פגישות ועוד." />
+  <meta name="description" content="AutoScale בונה מערכות CRM ופתרונות WhatsApp ואוטומציות לעסקים: קליטת לידים, פולואפ, תיאום פגישות, חוזים וחתימה דיגיטלית ועוד." />
   <style>
     :root{
       --bg:#0b0f17;
-      --card:#121a2a;
+      --panel:rgba(18,26,42,.75);
+      --card:rgba(18,26,42,.82);
       --muted:#8ea0c6;
       --text:#eaf0ff;
-      --border:rgba(255,255,255,.08);
+      --border:rgba(255,255,255,.10);
       --shadow: 0 10px 30px rgba(0,0,0,.35);
-      --accent:#6aa6ff;
-      --accent2:#7cffa6;
-      --chip:#0f1626;
     }
     *{ box-sizing:border-box; }
     body{
       margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-      background: radial-gradient(1200px 800px at 10% 0%, rgba(106,166,255,.18), transparent 60%),
-                  radial-gradient(1000px 700px at 90% 10%, rgba(124,255,166,.12), transparent 60%),
-                  var(--bg);
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      background:
+        radial-gradient(1100px 750px at 10% 0%, rgba(106,166,255,.18), transparent 60%),
+        radial-gradient(900px 650px at 90% 10%, rgba(124,255,166,.12), transparent 60%),
+        var(--bg);
       color:var(--text);
     }
     a{ color:inherit; text-decoration:none; }
-    .wrap{ max-width:1100px; margin:0 auto; padding:28px 18px 80px; }
-    header{
-      display:flex; gap:14px; align-items:flex-start; justify-content:space-between; flex-wrap:wrap;
-      padding:18px; border:1px solid var(--border); border-radius:18px; background:rgba(18,26,42,.72); box-shadow:var(--shadow);
-      backdrop-filter: blur(8px);
+    .wrap{ max-width:1100px; margin:0 auto; padding:28px 18px 72px; }
+
+    .header{
+      border:1px solid var(--border);
+      background:var(--panel);
+      border-radius:18px;
+      box-shadow:var(--shadow);
+      padding:18px;
     }
-    .brand{ display:flex; align-items:flex-start; gap:12px; flex: 1 1 560px; }
+    .topRow{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      align-items:flex-start;
+      flex-wrap:wrap;
+    }
+    .brand{
+      display:flex; gap:12px; align-items:flex-start;
+      flex: 1 1 520px;
+    }
     .logo{
       width:44px; height:44px; border-radius:14px;
       border:1px solid rgba(106,166,255,.35);
       background: linear-gradient(135deg, rgba(106,166,255,.25), rgba(124,255,166,.12));
       display:flex; align-items:center; justify-content:center;
-      font-weight:800; letter-spacing:.4px;
+      font-weight:800;
       flex: 0 0 auto;
     }
-    .title h1{ margin:0 0 6px; font-size:22px; letter-spacing:.2px; }
-    .title p{ margin:0; color:var(--muted); line-height:1.6; max-width: 70ch; }
-    .hint{ color:var(--muted); font-size:12px; margin-top:8px; line-height:1.6; }
-    .pillbar{ display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
-    .pill{
-      border:1px solid var(--border); background:rgba(15,22,38,.7);
-      padding:8px 10px; border-radius:999px; font-size:12px; color:var(--muted);
+    h1{ margin:0 0 6px; font-size:22px; }
+    p{ margin:0; color:var(--muted); line-height:1.6; }
+    .hint{ margin-top:10px; font-size:12px; color:var(--muted); line-height:1.6; }
+
+    .btn{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:10px 12px;
+      border-radius:12px;
+      border:1px solid var(--border);
+      background:rgba(15,22,38,.85);
+      font-size:13px;
+      cursor:pointer;
+      white-space:nowrap;
     }
-    .pill strong{ color:var(--text); font-weight:700; }
-    .topCta{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:12px; }
+    .btnGood{
+      border-color: rgba(124,255,166,.45);
+    }
+
+    .chips{ display:flex; gap:8px; flex-wrap:wrap; margin-top:12px; }
+    .chip{
+      font-size:12px; padding:6px 9px; border-radius:999px;
+      border:1px solid var(--border); background:rgba(15,22,38,.70);
+      color:var(--muted);
+    }
+
     .controls{
       display:flex; gap:10px; flex-wrap:wrap; width:100%;
       margin-top:14px;
     }
     .search, select{
-      border:1px solid var(--border); background:rgba(15,22,38,.8);
-      color:var(--text); border-radius:12px; padding:10px 12px; outline:none;
+      border:1px solid var(--border);
+      background:rgba(15,22,38,.85);
+      color:var(--text);
+      border-radius:12px;
+      padding:10px 12px;
+      outline:none;
     }
     .search{ flex: 1 1 260px; }
     select{ flex: 0 0 220px; cursor:pointer; }
@@ -71,12 +102,8 @@
       box-shadow:var(--shadow);
       padding:14px;
     }
-    .section h2{
-      margin:0 0 10px;
-      font-size:14px;
-      color: rgba(234,240,255,.92);
-      letter-spacing:.2px;
-    }
+    .sectionTitle{ margin:0 0 10px; font-size:14px; color:rgba(234,240,255,.92); }
+
     .cols{
       display:grid;
       grid-template-columns: repeat(12, 1fr);
@@ -91,14 +118,8 @@
     }
     @media (max-width: 900px){ .col{ grid-column: span 12; } }
     .col h3{ margin:0 0 6px; font-size:14px; }
-    .col p{ margin:0; color:var(--muted); font-size:13px; line-height:1.55; }
-    .bullets{ margin:10px 0 0; padding:0 18px 0 0; color:var(--muted); font-size:13px; line-height:1.7; }
+    .bullets{ margin:8px 0 0; padding:0 18px 0 0; color:var(--muted); font-size:13px; line-height:1.7; }
     .bullets li{ margin:6px 0; }
-    .chips{ display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; }
-    .chip{
-      font-size:12px; padding:6px 8px; border-radius:999px;
-      border:1px solid var(--border); background:rgba(15,22,38,.7); color:var(--muted);
-    }
 
     .grid{
       margin-top:16px;
@@ -109,86 +130,61 @@
     .card{
       grid-column: span 6;
       border:1px solid var(--border);
-      background:rgba(18,26,42,.78);
+      background:var(--card);
       border-radius:18px;
       overflow:hidden;
       box-shadow:var(--shadow);
-      transition: transform .15s ease, border-color .15s ease;
     }
-    .card:hover{ transform: translateY(-2px); border-color: rgba(106,166,255,.35); }
     @media (max-width: 900px){ .card{ grid-column: span 12; } }
     .thumb{
       height:180px;
-      background: linear-gradient(120deg, rgba(106,166,255,.2), rgba(124,255,166,.12));
-      position:relative;
       border-bottom:1px solid var(--border);
       display:flex; align-items:center; justify-content:center;
+      background: linear-gradient(120deg, rgba(106,166,255,.20), rgba(124,255,166,.12));
       padding:12px;
       text-align:center;
+      color: rgba(234,240,255,.85);
+      font-size:13px;
     }
-    .thumb span{ color:rgba(234,240,255,.85); font-size:13px; }
     .content{ padding:14px; }
-    .toprow{ display:flex; justify-content:space-between; gap:10px; align-items:flex-start; }
-    .content h3{ margin:0; font-size:16px; }
-    .meta{ margin-top:6px; color:var(--muted); font-size:13px; line-height:1.5; }
-    .actions{ display:flex; gap:10px; flex-wrap:wrap; margin-top:12px; }
-
-    .btn{
-      padding:9px 10px; border-radius:12px; border:1px solid var(--border);
-      background:rgba(15,22,38,.8);
-      font-size:13px; color:var(--text);
-      display:inline-flex; gap:8px; align-items:center;
-      cursor:pointer;
+    .row{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      align-items:flex-start;
     }
-    .btn.primary{ border-color: rgba(106,166,255,.45); }
-    .btn.primary:hover{ border-color: rgba(106,166,255,.85); }
-    .btn.good{ border-color: rgba(124,255,166,.45); }
-    .btn.good:hover{ border-color: rgba(124,255,166,.85); }
-    .btn:disabled{ opacity:.55; cursor:not-allowed; }
-
     .badge{
-      font-size:12px; padding:6px 8px; border-radius:999px;
+      font-size:12px; padding:6px 9px; border-radius:999px;
       border:1px solid rgba(106,166,255,.45);
-      color:rgba(234,240,255,.92);
       background:rgba(106,166,255,.12);
       white-space:nowrap;
     }
+    .meta{ margin-top:6px; color:var(--muted); font-size:13px; line-height:1.55; }
+    .stack{ display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; }
+    .stack .chip{ padding:6px 8px; }
+    .actions{ display:flex; gap:10px; flex-wrap:wrap; margin-top:12px; }
 
-    footer{
-      margin-top:18px; color:var(--muted); font-size:13px; line-height:1.7;
-      padding:12px 6px;
-    }
-
-    /* Modal */
     .modal{
       position:fixed; inset:0; background:rgba(0,0,0,.55);
-      display:none; align-items:center; justify-content:center; padding:18px; z-index:50;
+      display:none; align-items:center; justify-content:center;
+      padding:18px; z-index:50;
     }
     .modal.open{ display:flex; }
-    .modalbox{
+    .modalBox{
       width:min(980px, 100%);
       border:1px solid var(--border);
       background:rgba(11,15,23,.92);
       border-radius:18px;
       box-shadow:var(--shadow);
       overflow:hidden;
-      backdrop-filter: blur(10px);
     }
-    .modalhead{
+    .modalHead{
       display:flex; justify-content:space-between; align-items:center;
       padding:12px 14px;
       border-bottom:1px solid var(--border);
       background:rgba(18,26,42,.55);
     }
-    .modalhead h4{ margin:0; font-size:14px; }
-    .close{
-      border:1px solid var(--border);
-      background:rgba(15,22,38,.8);
-      color:var(--text);
-      border-radius:12px;
-      padding:8px 10px;
-      cursor:pointer;
-    }
+    .modalHead h4{ margin:0; font-size:14px; }
     .gallery{
       display:grid;
       grid-template-columns: repeat(12, 1fr);
@@ -204,12 +200,276 @@
     }
     @media (max-width: 900px){ .shot{ grid-column: span 12; } }
     .shot img{ width:100%; height:auto; display:block; }
-    .shot .cap{ padding:10px; color:var(--muted); font-size:12px; line-height:1.5; }
+    .cap{ padding:10px; color:var(--muted); font-size:12px; line-height:1.55; }
+    footer{ margin-top:18px; color:var(--muted); font-size:13px; line-height:1.7; padding:12px 6px; }
   </style>
 </head>
 
 <body>
   <div class="wrap">
-    <header>
-      <div class="brand">
-        <div class="logo">AS</div>
+    <div class="header">
+      <div class="topRow">
+        <div class="brand">
+          <div class="logo">AS</div>
+          <div>
+            <h1>AutoScale</h1>
+            <p>מערכות CRM ופתרונות WhatsApp לעסקים. קליטת לידים, פולואפ, תיאום פגישות, חוזים וחתימה דיגיטלית, ואוטומציות מורכבות שמייצרות סדר.</p>
+            <div class="chips">
+              <span class="chip">פוקוס: CRM + WhatsApp</span>
+              <span class="chip">אפשר גם: שדרוג מערכת קיימת והדרכה</span>
+            </div>
+            <div class="hint">מוצגים רק חומרים ללא מידע רגיש. פרטים מזהים מטושטשים.</div>
+          </div>
+        </div>
+
+        <div>
+          <a id="waTop" class="btn btnGood" href="#" target="_blank" rel="noopener">דברו איתי ב WhatsApp</a>
+        </div>
+      </div>
+
+      <div class="controls">
+        <input id="search" class="search" type="search" placeholder="חיפוש: monday, wati, lead, חוזה, calendly..." />
+        <select id="filter">
+          <option value="all">כל הקטגוריות</option>
+          <option value="CRM">CRM</option>
+          <option value="Chatbot">WhatsApp</option>
+          <option value="Contracts">חוזים וחתימה</option>
+          <option value="Integrations">אינטגרציות</option>
+          <option value="Other">אחר</option>
+        </select>
+      </div>
+    </div>
+
+    <section class="section">
+      <h2 class="sectionTitle">למי זה מתאים</h2>
+      <div class="cols">
+        <div class="col">
+          <h3>עסקים שמקבלים לידים ורוצים סדר</h3>
+          <ul class="bullets">
+            <li>קליטת לידים אוטומטית מכל מקור, בלי פספוסים</li>
+            <li>סטטוסים, משימות, תיעוד והודעות במקום אחד</li>
+            <li>פולואפ חכם שמעלה סיכוי לסגירה</li>
+          </ul>
+        </div>
+        <div class="col">
+          <h3>תחומים נפוצים</h3>
+          <ul class="bullets">
+            <li>נדל״ן, עורכי דין, פיננסים, שירותים מקצועיים</li>
+            <li>קליניקות, מכוני טיפולים, נותני שירות, סוכנויות</li>
+            <li>עסקים עם צוות מכירות או שירות לקוחות ב WhatsApp</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="sectionTitle">איך מתחילים</h2>
+      <div class="cols">
+        <div class="col">
+          <h3>תהליך עבודה</h3>
+          <ul class="bullets">
+            <li>שיחת אפיון קצרה להבין מטרה ומצב קיים</li>
+            <li>הצעת מחיר מסודרת כולל מה נכנס ומה לא</li>
+            <li>תוצר ראשוני מהר כדי לוודא כיוון</li>
+            <li>שיפור ושדרוג בהתאמה ללקוח, כולל טיפול בקצוות</li>
+            <li>מסירת תוצר מוכן ויציב</li>
+            <li>הדרכה לעבודה נכונה לצוות</li>
+            <li>תמיכה לאורך הדרך וגם אחרי לפי צורך</li>
+          </ul>
+        </div>
+        <div class="col">
+          <h3>אפשרויות עבודה</h3>
+          <ul class="bullets">
+            <li>פרויקט הקמה מלאה מקצה לקצה</li>
+            <li>בנק שעות לשדרוג, תחזוקה ותיקונים במערכת קיימת</li>
+            <li>תמיכה חודשית למערכות פעילות</li>
+            <li>הדרכה וליווי לצוות: CRM, WhatsApp ותהליכים</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <div id="grid" class="grid"></div>
+
+    <footer>
+      <div>לבדיקת התאמה שלח: איזה CRM יש לך, מאיפה מגיעים לידים, ומה התוצאה שאתה רוצה. אענה עם כיוון ברור.</div>
+      <div style="margin-top:10px;">
+        <a id="waBottom" class="btn btnGood" href="#" target="_blank" rel="noopener">דברו איתי ב WhatsApp</a>
+      </div>
+    </footer>
+  </div>
+
+  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-label="גלריה">
+    <div class="modalBox">
+      <div class="modalHead">
+        <h4 id="modalTitle">גלריה</h4>
+        <button id="closeBtn" class="btn">סגירה</button>
+      </div>
+      <div id="modalBody" class="gallery"></div>
+    </div>
+  </div>
+
+  <script>
+    const WHATSAPP_NUMBER = "972545764327";
+    const WHATSAPP_PREFILL = "היי AutoScale, ראיתי את הפורטפוליו. אשמח לשיחה קצרה על CRM ו WhatsApp עבור העסק שלי. איזה פרטים צריך ממני כדי להתחיל?";
+
+    function buildWhatsAppLink(){
+      const text = encodeURIComponent(WHATSAPP_PREFILL);
+      return "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + text;
+    }
+
+    function safeSetHref(id){
+      const el = document.getElementById(id);
+      if(el) el.href = buildWhatsAppLink();
+    }
+
+    safeSetHref("waTop");
+    safeSetHref("waBottom");
+
+    const projects = [
+      {
+        title: "קליטת לידים ל CRM עם תיוג וחלוקה אוטומטית",
+        category: "CRM",
+        summary: "לידים נכנסים ל CRM עם בדיקות, תיוג לפי מקור, שיוך לנציג ומשימות פולואפ.",
+        stack: ["monday.com", "Facebook Lead Ads", "Make"],
+        shots: [
+          { src: "assets/screenshots/crm-flow-1.png", caption: "מיפוי שדות ובדיקות חובה לפני יצירת ליד." },
+          { src: "assets/screenshots/crm-board-1.png", caption: "תצוגת CRM עם סטטוסים, בעלות ותיעוד פעילות." }
+        ]
+      },
+      {
+        title: "WhatsApp בוט לסינון לידים והעברה לנציג",
+        category: "Chatbot",
+        summary: "בוט WhatsApp עם שאלות סינון, שמירת מידע והעברה לנציג כשצריך.",
+        stack: ["WhatsApp", "WATI", "ManyChat"],
+        shots: [
+          { src: "assets/screenshots/wa-chat-1.png", caption: "שיחה לדוגמה עם סינון ליד והמשך תהליך." },
+          { src: "assets/screenshots/wa-flow-1.png", caption: "ניתוב לפי כוונה והעברה לנציג במקרה הצורך." }
+        ]
+      },
+      {
+        title: "חוזה מתוך CRM ושליחה לחתימה עם סטטוס",
+        category: "Contracts",
+        summary: "יצירת חוזה אוטומטית, שליחה לחתימה ועדכון סטטוס כולל תזכורות.",
+        stack: ["EasyDoc", "CRM", "Make"],
+        shots: [
+          { src: "assets/screenshots/contract-template-1.png", caption: "תבנית חוזה עם משתנים וסעיפים דינמיים." },
+          { src: "assets/screenshots/contract-status-1.png", caption: "מעקב סטטוס חתימה ועדכונים אוטומטיים." }
+        ]
+      },
+      {
+        title: "תיאום פגישות אוטומטי ועדכון CRM",
+        category: "Integrations",
+        summary: "לקוח קובע פגישה, נשלחות הודעות אישור ותזכורת, ונוצר תיעוד ב CRM.",
+        stack: ["Calendly", "Google Calendar", "Zoom"],
+        shots: [
+          { src: "assets/screenshots/calendly-1.png", caption: "עמוד קביעת פגישה עם זמינות וסוגי פגישות." },
+          { src: "assets/screenshots/meeting-flow-1.png", caption: "יצירת פגישה ותיעוד מלא ב CRM." }
+        ]
+      }
+    ];
+
+    const grid = document.getElementById("grid");
+    const search = document.getElementById("search");
+    const filter = document.getElementById("filter");
+    const modal = document.getElementById("modal");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalBody = document.getElementById("modalBody");
+    const closeBtn = document.getElementById("closeBtn");
+
+    function escapeHtml(str){
+      return String(str).replace(/[&<>"']/g, s => ({
+        "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+      }[s]));
+    }
+
+    function badgeName(cat){
+      if(cat === "Chatbot") return "WhatsApp";
+      if(cat === "Contracts") return "חוזים וחתימה";
+      if(cat === "Integrations") return "אינטגרציות";
+      return cat;
+    }
+
+    function cardTemplate(p, idx){
+      const shotCount = (p.shots || []).length;
+      const thumbText = shotCount ? (shotCount + " תמונות בגלריה") : "אין עדיין תמונות";
+      const chips = (p.stack || []).slice(0, 6).map(t => "<span class=\"chip\">" + escapeHtml(t) + "</span>").join("");
+
+      return ""
+        + "<article class=\"card\">"
+        +   "<div class=\"thumb\">" + escapeHtml(thumbText) + "</div>"
+        +   "<div class=\"content\">"
+        +     "<div class=\"row\">"
+        +       "<div>"
+        +         "<div style=\"font-size:16px;font-weight:700;\">" + escapeHtml(p.title) + "</div>"
+        +         "<div class=\"meta\">" + escapeHtml(p.summary) + "</div>"
+        +       "</div>"
+        +       "<span class=\"badge\">" + escapeHtml(badgeName(p.category)) + "</span>"
+        +     "</div>"
+        +     "<div class=\"stack\">" + chips + "</div>"
+        +     "<div class=\"actions\">"
+        +       "<button class=\"btn\" data-open=\"" + idx + "\"" + (shotCount ? "" : " disabled") + ">צפייה בגלריה</button>"
+        +       "<a class=\"btn btnGood\" href=\"" + buildWhatsAppLink() + "\" target=\"_blank\" rel=\"noopener\">דברו איתי ב WhatsApp</a>"
+        +     "</div>"
+        +   "</div>"
+        + "</article>";
+    }
+
+    function render(){
+      if(!grid) return;
+      const q = (search && search.value ? search.value.trim().toLowerCase() : "");
+      const cat = (filter && filter.value ? filter.value : "all");
+
+      const filtered = projects.filter(p => {
+        const hay = (p.title + " " + p.summary + " " + (p.stack || []).join(" ")).toLowerCase();
+        const matchesSearch = !q || hay.includes(q);
+        const matchesCat = (cat === "all") || (p.category === cat);
+        return matchesSearch && matchesCat;
+      });
+
+      grid.innerHTML = filtered.map((p, i) => cardTemplate(p, projects.indexOf(p))).join("");
+
+      grid.querySelectorAll("[data-open]").forEach(btn => {
+        btn.addEventListener("click", (e) => {
+          const idx = Number(e.currentTarget.getAttribute("data-open"));
+          openModal(idx);
+        });
+      });
+    }
+
+    function openModal(idx){
+      const p = projects[idx];
+      if(!p || !modal || !modalTitle || !modalBody) return;
+
+      modalTitle.textContent = p.title + " | גלריה";
+      const shots = (p.shots || []).map(s =>
+        "<div class=\"shot\">"
+        + "<img src=\"" + escapeHtml(s.src) + "\" alt=\"צילום מסך\" loading=\"lazy\" />"
+        + "<div class=\"cap\">" + escapeHtml(s.caption || "") + "</div>"
+        + "</div>"
+      ).join("");
+
+      modalBody.innerHTML = shots || "<div style=\"padding:14px;color:var(--muted);\">אין עדיין תמונות.</div>";
+      modal.classList.add("open");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeModal(){
+      if(!modal) return;
+      modal.classList.remove("open");
+      document.body.style.overflow = "";
+      if(modalBody) modalBody.innerHTML = "";
+    }
+
+    if(closeBtn) closeBtn.addEventListener("click", closeModal);
+    if(modal) modal.addEventListener("click", (e) => { if(e.target === modal) closeModal(); });
+    window.addEventListener("keydown", (e) => { if(e.key === "Escape") closeModal(); });
+
+    document.addEventListener("DOMContentLoaded", render);
+    if(search) search.addEventListener("input", render);
+    if(filter) filter.addEventListener("change", render);
+
+    render();
+  </script>
+</body>
+</html>
