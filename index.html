@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Richard | Automation Portfolio</title>
+  <meta name="description" content="Automation, CRM, chatbots, contracts, and integrations portfolio." />
+  <style>
+    :root{
+      --bg:#0b0f17;
+      --card:#121a2a;
+      --muted:#8ea0c6;
+      --text:#eaf0ff;
+      --border:rgba(255,255,255,.08);
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --accent:#6aa6ff;
+      --accent2:#7cffa6;
+      --danger:#ff6a6a;
+      --chip:#0f1626;
+    }
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      background: radial-gradient(1200px 800px at 10% 0%, rgba(106,166,255,.18), transparent 60%),
+                  radial-gradient(1000px 700px at 90% 10%, rgba(124,255,166,.12), transparent 60%),
+                  var(--bg);
+      color:var(--text);
+    }
+    a{ color:inherit; text-decoration:none; }
+    .wrap{ max-width:1100px; margin:0 auto; padding:28px 18px 80px; }
+    header{
+      display:flex; gap:14px; align-items:flex-start; justify-content:space-between; flex-wrap:wrap;
+      padding:18px; border:1px solid var(--border); border-radius:18px; background:rgba(18,26,42,.72); box-shadow:var(--shadow);
+      backdrop-filter: blur(8px);
+    }
+    .title h1{ margin:0 0 6px; font-size:24px; letter-spacing:.2px; }
+    .title p{ margin:0; color:var(--muted); line-height:1.4; }
+    .pillbar{ display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
+    .pill{
+      border:1px solid var(--border); background:rgba(15,22,38,.7);
+      padding:8px 10px; border-radius:999px; font-size:12px; color:var(--muted);
+    }
+    .pill strong{ color:var(--text); font-weight:600; }
+    .controls{
+      display:flex; gap:10px; flex-wrap:wrap; width:100%;
+      margin-top:14px;
+    }
+    .search, select{
+      border:1px solid var(--border); background:rgba(15,22,38,.8);
+      color:var(--text); border-radius:12px; padding:10px 12px; outline:none;
+    }
+    .search{ flex: 1 1 260px; }
+    select{ flex: 0 0 210px; cursor:pointer; }
+    .grid{
+      margin-top:18px;
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap:14px;
+    }
+    .card{
+      grid-column: span 6;
+      border:1px solid var(--border);
+      background:rgba(18,26,42,.78);
+      border-radius:18px;
+      overflow:hidden;
+      box-shadow:var(--shadow);
+      transition: transform .15s ease, border-color .15s ease;
+    }
+    .card:hover{ transform: translateY(-2px); border-color: rgba(106,166,255,.35); }
+    @media (max-width: 900px){ .card{ grid-column: span 12; } }
+    .thumb{
+      height:180px;
+      background: linear-gradient(120deg, rgba(106,166,255,.2), rgba(124,255,166,.12));
+      position:relative;
+      border-bottom:1px solid var(--border);
+      display:flex; align-items:center; justify-content:center;
+      padding:12px;
+      text-align:center;
+    }
+    .thumb span{ color:rgba(234,240,255,.85); font-size:13px; }
+    .content{ padding:14px; }
+    .toprow{ display:flex; justify-content:space-between; gap:10px; align-items:flex-start; }
+    .content h3{ margin:0; font-size:16px; }
+    .meta{ margin-top:6px; color:var(--muted); font-size:13px; line-height:1.35; }
+    .chips{ display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; }
+    .chip{
+      font-size:12px; padding:6px 8px; border-radius:999px;
+      border:1px solid var(--border); background:rgba(15,22,38,.7); color:var(--muted);
+    }
+    .actions{ display:flex; gap:10px; flex-wrap:wrap; margin-top:12px; }
+    .btn{
+      padding:9px 10px; border-radius:12px; border:1px solid var(--border);
+      background:rgba(15,22,38,.8);
+      font-size:13px; color:var(--text);
+      display:inline-flex; gap:8px; align-items:center;
+      cursor:pointer;
+    }
+    .btn.primary{ border-color: rgba(106,166,255,.45); }
+    .btn.primary:hover{ border-color: rgba(106,166,255,.85); }
+    .btn.good{ border-color: rgba(124,255,166,.45); }
+    .btn.good:hover{ border-color: rgba(124,255,166,.85); }
+    .btn.ghost{ background:transparent; }
+    .btn:disabled{ opacity:.55; cursor:not-allowed; }
+    footer{
+      margin-top:18px; color:var(--muted); font-size:13px; line-height:1.6;
+      padding:12px 6px;
+    }
+
+    /* Modal */
+    .modal{
+      position:fixed; inset:0; background:rgba(0,0,0,.55);
+      display:none; align-items:center; justify-content:center; padding:18px; z-index:50;
+    }
+    .modal.open{ display:flex; }
+    .modalbox{
+      width:min(980px, 100%);
+      border:1px solid var(--border);
+      background:rgba(11,15,23,.92);
+      border-radius:18px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      backdrop-filter: blur(10px);
+    }
+    .modalhead{
+      display:flex; justify-content:space-between; align-items:center;
+      padding:12px 14px;
+      border-bottom:1px solid var(--border);
+      background:rgba(18,26,42,.55);
+    }
+    .modalhead h4{ margin:0; font-size:14px; }
+    .close{
+      border:1px solid var(--border);
+      background:rgba(15,22,38,.8);
+      color:var(--text);
+      border-radius:12px;
+      padding:8px 10px;
+      cursor:pointer;
+    }
+    .gallery{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap:10px;
+      padding:14px;
+    }
+    .shot{
+      grid-column: span 6;
+      border:1px solid var(--border);
+      border-radius:14px;
+      overflow:hidden;
+      background:rgba(18,26,42,.55);
+    }
+    @media (max-width: 900px){ .shot{ grid-column: span 12; } }
+    .shot img{ width:100%; height:auto; display:block; }
+    .shot .cap{ padding:10px; color:var(--muted); font-size:12px; line-height:1.35; }
+    .hint{ color:var(--muted); font-size:12px; margin-top:10px; }
+    .badge{
+      font-size:12px; padding:6px 8px; border-radius:999px;
+      border:1px solid rgba(106,166,255,.45);
+      color:rgba(234,240,255,.92);
+      background:rgba(106,166,255,.12);
+      white-space:nowrap;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header>
+      <div class="title">
+        <h1>Automation Portfolio</h1>
+        <p>CRM, chatbots, contracts, integrations. Screenshots + quick context. Click a project to open a gallery, or jump to Notion for full details.</p>
+        <div class="hint">Tip: keep Notion pages public but clean (no raw client data, blur sensitive info).</div>
+      </div>
+
+      <div class="pillbar">
+        <div class="pill"><strong>Categories:</strong> CRM · Chatbots · Contracts · Integrations</div>
+        <div class="pill"><strong>Format:</strong> GitHub Pages + Notion deep dives</div>
+      </div>
+
+      <div class="controls">
+        <input id="search" class="search" type="search" placeholder="Search projects (e.g. monday, whatsapp, invoices)..." />
+        <select id="filter">
+          <option value="all">All categories</option>
+          <option value="CRM">CRM</option>
+          <option value="Chatbot">Chatbot</option>
+          <option value="Contracts">Contracts</option>
+          <option value="Integrations">Integrations</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+    </header>
+
+    <div id="grid" class="grid"></div>
+
+    <footer>
+      <div>Want it to look premium fast? Use consistent screenshot sizes, blur client identifiers, and keep each project to 5–10 screens max.</div>
+      <div>Host images in this repo (assets/screenshots/) so it loads instantly. Keep Notion for full flow diagrams, scope, results, and stack.</div>
+    </footer>
+  </div>
+
+  <!-- Modal -->
+  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-label="Project gallery">
+    <div class="modalbox">
+      <div class="modalhead">
+        <h4 id="modalTitle">Gallery</h4>
+        <button id="closeBtn" class="close">Close</button>
+      </div>
+      <div id="modalBody" class="gallery"></div>
+    </div>
+  </div>
+
+  <script>
+    // ====== EDIT HERE: Add your projects ======
+    // For each project:
+    // - title: what it is
+    // - category: CRM | Chatbot | Contracts | Integrations | Other
+    // - summary: 1-2 lines
+    // - stack: array of tags
+    // - notionUrl: optional (put your Notion public link here)
+    // - shots: array of { src, caption }
+    const projects = [
+      {
+        title: "CRM Lead Intake + Auto-Tagging",
+        category: "CRM",
+        summary: "Facebook leads flow into CRM with validation, tagging, owner assignment, and follow-up sequences.",
+        stack: ["Make", "Facebook Leads", "CRM", "Webhooks"],
+        notionUrl: "https://www.notion.so/YOUR_PAGE_HERE",
+        shots: [
+          { src: "assets/screenshots/crm-1.png", caption: "Lead capture mapping and field normalization." },
+          { src: "assets/screenshots/crm-2.png", caption: "Auto-tagging logic and owner assignment." }
+        ]
+      },
+      {
+        title: "WhatsApp Chatbot: Support + Intake",
+        category: "Chatbot",
+        summary: "WhatsApp flow for FAQs, ticket opening, and lead qualification with human handoff.",
+        stack: ["WhatsApp", "Make/n8n", "AI", "CRM"],
+        notionUrl: "https://www.notion.so/YOUR_PAGE_HERE",
+        shots: [
+          { src: "assets/screenshots/chatbot-1.png", caption: "Conversation flow and intent routing." },
+          { src: "assets/screenshots/chatbot-2.png", caption: "Handoff to human and logging to CRM." }
+        ]
+      },
+      {
+        title: "Contracts: Auto-Generate + Sign",
+        category: "Contracts",
+        summary: "Generate dynamic contracts from CRM data and send for e-signature with status tracking.",
+        stack: ["Docs", "E-sign", "CRM", "Automation"],
+        notionUrl: "https://www.notion.so/YOUR_PAGE_HERE",
+        shots: [
+          { src: "assets/screenshots/contracts-1.png", caption: "Template variables and dynamic sections." },
+          { src: "assets/screenshots/contracts-2.png", caption: "Signature flow and status updates." }
+        ]
+      },
+      {
+        title: "Invoices: Upload + Classification",
+        category: "Integrations",
+        summary: "Invoice intake pipeline that uploads, classifies, and pushes metadata into the system.",
+        stack: ["Drive", "OCR", "Make", "Accounting"],
+        notionUrl: "https://www.notion.so/YOUR_PAGE_HERE",
+        shots: [
+          { src: "assets/screenshots/invoices-1.png", caption: "Upload trigger and file handling." }
+        ]
+      }
+    ];
+    // ====== STOP EDITING HERE (unless you want customization) ======
+
+    const grid = document.getElementById("grid");
+    const search = document.getElementById("search");
+    const filter = document.getElementById("filter");
+    const modal = document.getElementById("modal");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalBody = document.getElementById("modalBody");
+    const closeBtn = document.getElementById("closeBtn");
+
+    function escapeHtml(str){
+      return String(str).replace(/[&<>"']/g, s => ({
+        "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+      }[s]));
+    }
+
+    function cardTemplate(p, idx){
+      const chips = p.stack.map(t => `<span class="chip">${escapeHtml(t)}</span>`).join("");
+      const notionBtn = p.notionUrl && p.notionUrl.includes("http")
+        ? `<a class="btn good" href="${escapeHtml(p.notionUrl)}" target="_blank" rel="noopener">Open details (Notion)</a>`
+        : `<button class="btn good" disabled title="Add a notionUrl to enable">Open details (Notion)</button>`;
+
+      const shotCount = (p.shots || []).length;
+      const thumbText = shotCount ? `${shotCount} screenshot${shotCount === 1 ? "" : "s"} in gallery` : "No screenshots yet";
+
+      return `
+        <article class="card" data-idx="${idx}">
+          <div class="thumb"><span>${escapeHtml(thumbText)}</span></div>
+          <div class="content">
+            <div class="toprow">
+              <div>
+                <h3>${escapeHtml(p.title)}</h3>
+                <div class="meta">${escapeHtml(p.summary)}</div>
+              </div>
+              <span class="badge">${escapeHtml(p.category)}</span>
+            </div>
+            <div class="chips">${chips}</div>
+            <div class="actions">
+              <button class="btn primary" ${shotCount ? "" : "disabled"} data-open="${idx}">
+                View gallery
+              </button>
+              ${notionBtn}
+            </div>
+          </div>
+        </article>
+      `;
+    }
+
+    function render(){
+      const q = search.value.trim().toLowerCase();
+      const cat = filter.value;
+
+      const filtered = projects.filter(p => {
+        const hay = (p.title + " " + p.summary + " " + (p.stack || []).join(" ")).toLowerCase();
+        const matchesSearch = !q || hay.includes(q);
+        const matchesCat = (cat === "all") || (p.category === cat);
+        return matchesSearch && matchesCat;
+      });
+
+      grid.innerHTML = filtered.map((p, i) => cardTemplate(p, projects.indexOf(p))).join("");
+
+      // bind gallery buttons
+      grid.querySelectorAll("[data-open]").forEach(btn => {
+        btn.addEventListener("click", (e) => {
+          const idx = Number(e.currentTarget.getAttribute("data-open"));
+          openModal(idx);
+        });
+      });
+    }
+
+    function openModal(idx){
+      const p = projects[idx];
+      modalTitle.textContent = `${p.title} • Gallery`;
+      const shots = (p.shots || []).map(s => `
+        <div class="shot">
+          <img src="${escapeHtml(s.src)}" alt="${escapeHtml(p.title)} screenshot" loading="lazy" />
+          <div class="cap">${escapeHtml(s.caption || "")}</div>
+        </div>
+      `).join("");
+
+      modalBody.innerHTML = shots || `<div style="padding:14px;color:var(--muted);">No screenshots yet.</div>`;
+      modal.classList.add("open");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeModal(){
+      modal.classList.remove("open");
+      document.body.style.overflow = "";
+      modalBody.innerHTML = "";
+    }
+
+    closeBtn.addEventListener("click", closeModal);
+    modal.addEventListener("click", (e) => { if(e.target === modal) closeModal(); });
+    window.addEventListener("keydown", (e) => { if(e.key === "Escape") closeModal(); });
+
+    search.addEventListener("input", render);
+    filter.addEventListener("change", render);
+
+    render();
+  </script>
+</body>
+</html>
