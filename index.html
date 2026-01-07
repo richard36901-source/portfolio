@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="en">
+<html lang="he" dir="rtl">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Richard | Automation Portfolio</title>
-  <meta name="description" content="Automation, CRM, chatbots, contracts, and integrations portfolio." />
+  <title>AutoScale | פורטפוליו אוטומציות, CRM ו WhatsApp</title>
+  <meta name="description" content="AutoScale בונה מערכות CRM, צאט בוט WhatsApp ואוטומציות מורכבות שמורידות עבודה ידנית ומגדילות סגירות." />
   <style>
     :root{
       --bg:#0b0f17;
@@ -15,7 +15,6 @@
       --shadow: 0 10px 30px rgba(0,0,0,.35);
       --accent:#6aa6ff;
       --accent2:#7cffa6;
-      --danger:#ff6a6a;
       --chip:#0f1626;
     }
     *{ box-sizing:border-box; }
@@ -34,8 +33,18 @@
       padding:18px; border:1px solid var(--border); border-radius:18px; background:rgba(18,26,42,.72); box-shadow:var(--shadow);
       backdrop-filter: blur(8px);
     }
-    .title h1{ margin:0 0 6px; font-size:24px; letter-spacing:.2px; }
-    .title p{ margin:0; color:var(--muted); line-height:1.4; }
+    .brand{
+      display:flex; align-items:flex-start; gap:12px; flex: 1 1 520px;
+    }
+    .logo{
+      width:44px; height:44px; border-radius:14px;
+      border:1px solid rgba(106,166,255,.35);
+      background: linear-gradient(135deg, rgba(106,166,255,.25), rgba(124,255,166,.12));
+      display:flex; align-items:center; justify-content:center;
+      font-weight:700; letter-spacing:.5px;
+    }
+    .title h1{ margin:0 0 6px; font-size:22px; letter-spacing:.2px; }
+    .title p{ margin:0; color:var(--muted); line-height:1.5; max-width: 62ch; }
     .pillbar{ display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
     .pill{
       border:1px solid var(--border); background:rgba(15,22,38,.7);
@@ -51,9 +60,45 @@
       color:var(--text); border-radius:12px; padding:10px 12px; outline:none;
     }
     .search{ flex: 1 1 260px; }
-    select{ flex: 0 0 210px; cursor:pointer; }
+    select{ flex: 0 0 220px; cursor:pointer; }
+
+    .section{
+      margin-top:16px;
+      border:1px solid var(--border);
+      background:rgba(18,26,42,.55);
+      border-radius:18px;
+      box-shadow:var(--shadow);
+      padding:14px;
+    }
+    .section h2{
+      margin:0 0 10px;
+      font-size:14px;
+      color: rgba(234,240,255,.92);
+      letter-spacing:.2px;
+    }
+    .cols{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap:12px;
+    }
+    .col{
+      grid-column: span 6;
+      border:1px solid var(--border);
+      background:rgba(15,22,38,.65);
+      border-radius:16px;
+      padding:12px;
+    }
+    @media (max-width: 900px){ .col{ grid-column: span 12; } }
+    .col h3{ margin:0 0 6px; font-size:14px; }
+    .col p{ margin:0; color:var(--muted); font-size:13px; line-height:1.5; }
+    .chips{ display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; }
+    .chip{
+      font-size:12px; padding:6px 8px; border-radius:999px;
+      border:1px solid var(--border); background:rgba(15,22,38,.7); color:var(--muted);
+    }
+
     .grid{
-      margin-top:18px;
+      margin-top:16px;
       display:grid;
       grid-template-columns: repeat(12, 1fr);
       gap:14px;
@@ -82,13 +127,9 @@
     .content{ padding:14px; }
     .toprow{ display:flex; justify-content:space-between; gap:10px; align-items:flex-start; }
     .content h3{ margin:0; font-size:16px; }
-    .meta{ margin-top:6px; color:var(--muted); font-size:13px; line-height:1.35; }
-    .chips{ display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; }
-    .chip{
-      font-size:12px; padding:6px 8px; border-radius:999px;
-      border:1px solid var(--border); background:rgba(15,22,38,.7); color:var(--muted);
-    }
+    .meta{ margin-top:6px; color:var(--muted); font-size:13px; line-height:1.45; }
     .actions{ display:flex; gap:10px; flex-wrap:wrap; margin-top:12px; }
+
     .btn{
       padding:9px 10px; border-radius:12px; border:1px solid var(--border);
       background:rgba(15,22,38,.8);
@@ -100,10 +141,18 @@
     .btn.primary:hover{ border-color: rgba(106,166,255,.85); }
     .btn.good{ border-color: rgba(124,255,166,.45); }
     .btn.good:hover{ border-color: rgba(124,255,166,.85); }
-    .btn.ghost{ background:transparent; }
     .btn:disabled{ opacity:.55; cursor:not-allowed; }
+
+    .badge{
+      font-size:12px; padding:6px 8px; border-radius:999px;
+      border:1px solid rgba(106,166,255,.45);
+      color:rgba(234,240,255,.92);
+      background:rgba(106,166,255,.12);
+      white-space:nowrap;
+    }
+
     footer{
-      margin-top:18px; color:var(--muted); font-size:13px; line-height:1.6;
+      margin-top:18px; color:var(--muted); font-size:13px; line-height:1.7;
       padding:12px 6px;
     }
 
@@ -152,14 +201,10 @@
     }
     @media (max-width: 900px){ .shot{ grid-column: span 12; } }
     .shot img{ width:100%; height:auto; display:block; }
-    .shot .cap{ padding:10px; color:var(--muted); font-size:12px; line-height:1.35; }
-    .hint{ color:var(--muted); font-size:12px; margin-top:10px; }
-    .badge{
-      font-size:12px; padding:6px 8px; border-radius:999px;
-      border:1px solid rgba(106,166,255,.45);
-      color:rgba(234,240,255,.92);
-      background:rgba(106,166,255,.12);
-      white-space:nowrap;
+    .shot .cap{ padding:10px; color:var(--muted); font-size:12px; line-height:1.45; }
+    .hint{ color:var(--muted); font-size:12px; margin-top:8px; line-height:1.5; }
+    .topCta{
+      display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:12px;
     }
   </style>
 </head>
@@ -167,104 +212,182 @@
 <body>
   <div class="wrap">
     <header>
-      <div class="title">
-        <h1>Automation Portfolio</h1>
-        <p>CRM, chatbots, contracts, integrations. Screenshots + quick context. Click a project to open a gallery, or jump to Notion for full details.</p>
-        <div class="hint">Tip: keep Notion pages public but clean (no raw client data, blur sensitive info).</div>
+      <div class="brand">
+        <div class="logo">AS</div>
+        <div class="title">
+          <h1>AutoScale</h1>
+          <p>בונים מערכות CRM ופתרונות WhatsApp שמורידים עבודה ידנית, משפרים תהליכים ומביאים יותר שליטה בעסק. כאן תראה דוגמאות אמיתיות של מסכים, תהליכים ושיחות.</p>
+
+          <div class="topCta">
+            <a id="waTop" class="btn good" href="#" target="_blank" rel="noopener">דברו איתי ב WhatsApp</a>
+            <span class="pill"><strong>פוקוס:</strong> CRM + WhatsApp</span>
+            <span class="pill"><strong>גם:</strong> חוזים, חתימות, מסמכים, מיילים ואוטומציות</span>
+          </div>
+
+          <div class="hint">הערה: אני מציג רק חומרים בלי מידע רגיש. כל שם לקוח, מספר טלפון או מזהה מטושטש.</div>
+        </div>
       </div>
 
       <div class="pillbar">
-        <div class="pill"><strong>Categories:</strong> CRM · Chatbots · Contracts · Integrations</div>
-        <div class="pill"><strong>Format:</strong> GitHub Pages + Notion deep dives</div>
+        <div class="pill"><strong>קטגוריות:</strong> CRM, WhatsApp, חוזים, אינטגרציות</div>
+        <div class="pill"><strong>סטנדרט:</strong> יציבות, לוגים, טיפול בקצוות</div>
       </div>
 
       <div class="controls">
-        <input id="search" class="search" type="search" placeholder="Search projects (e.g. monday, whatsapp, invoices)..." />
+        <input id="search" class="search" type="search" placeholder="חיפוש פרויקטים, לדוגמה monday, wati, lead, חוזה..." />
         <select id="filter">
-          <option value="all">All categories</option>
+          <option value="all">כל הקטגוריות</option>
           <option value="CRM">CRM</option>
-          <option value="Chatbot">Chatbot</option>
-          <option value="Contracts">Contracts</option>
-          <option value="Integrations">Integrations</option>
-          <option value="Other">Other</option>
+          <option value="Chatbot">WhatsApp</option>
+          <option value="Contracts">חוזים וחתימה</option>
+          <option value="Integrations">אינטגרציות</option>
+          <option value="Other">אחר</option>
         </select>
       </div>
     </header>
 
+    <section class="section">
+      <h2>מה אנחנו עושים</h2>
+      <div class="cols">
+        <div class="col">
+          <h3>מערכות CRM ותהליכי מכירה</h3>
+          <p>הקמה וסידור CRM, קליטת לידים אוטומטית, סטטוסים, משימות, תיוגים, הצעות מחיר, התראות וניהול תהליך מקצה לקצה.</p>
+          <div class="chips">
+            <span class="chip">monday.com Official Partner</span>
+            <span class="chip">Fireberry</span>
+            <span class="chip">ClickUp</span>
+            <span class="chip">Airtable</span>
+            <span class="chip">Smartsheet</span>
+            <span class="chip">GHL</span>
+          </div>
+        </div>
+
+        <div class="col">
+          <h3>WhatsApp וצאט בוטים</h3>
+          <p>בוטים ל FAQ, סינון לידים, פתיחת תקלות, פולואפ, דיוור WhatsApp, הודעות לפי סטטוס, והעברה לנציג אנושי כשצריך.</p>
+          <div class="chips">
+            <span class="chip">WATI Official Partner</span>
+            <span class="chip">ManyChat Official Partner</span>
+            <span class="chip">WhatsApp רשמי</span>
+            <span class="chip">Green API</span>
+            <span class="chip">API Business Cloud</span>
+          </div>
+        </div>
+
+        <div class="col">
+          <h3>חוזים, חתימות ומעטפת מסמכים</h3>
+          <p>יצירת חוזה אוטומטית מתוך נתונים ב CRM, שליחת מעטפת לחתימה, איסוף מסמכים, מעקב סטטוסים ותזכורות אוטומטיות.</p>
+          <div class="chips">
+            <span class="chip">EasyDoc</span>
+            <span class="chip">שליחת מעטפת מסמכים</span>
+            <span class="chip">איסוף מסמכים</span>
+            <span class="chip">סנכרון סטטוסים</span>
+          </div>
+        </div>
+
+        <div class="col">
+          <h3>אוטומציות מורכבות ואינטגרציות</h3>
+          <p>חיבור בין מערכות, קליטת מיילים ויצירת לקוח או הצעת מחיר, תמלול וסיכום שיחות, תיאום פגישות אוטומטי, תהליכים מרובי שלבים עם בדיקות ולוגים.</p>
+          <div class="chips">
+            <span class="chip">Make</span>
+            <span class="chip">n8n</span>
+            <span class="chip">Zapier</span>
+            <span class="chip">Google Drive</span>
+            <span class="chip">Microsoft OneDrive</span>
+            <span class="chip">Calendly</span>
+            <span class="chip">Zoom</span>
+            <span class="chip">Google Meet</span>
+            <span class="chip">ChatGPT</span>
+            <span class="chip">Gemini</span>
+            <span class="chip">Claude</span>
+            <span class="chip">חשבוניות ירוקה</span>
+            <span class="chip">EasyCount</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <div id="grid" class="grid"></div>
 
     <footer>
-      <div>Want it to look premium fast? Use consistent screenshot sizes, blur client identifiers, and keep each project to 5–10 screens max.</div>
-      <div>Host images in this repo (assets/screenshots/) so it loads instantly. Keep Notion for full flow diagrams, scope, results, and stack.</div>
+      <div>רוצה משהו דומה לעסק שלך? שלח לי בקצרה איזה CRM אתה משתמש, מה מקור הלידים, ומה התוצאה שאתה רוצה. אני אחזור עם כיוון ברור.</div>
+      <div style="margin-top:10px;">
+        <a id="waBottom" class="btn good" href="#" target="_blank" rel="noopener">דברו איתי ב WhatsApp</a>
+      </div>
     </footer>
   </div>
 
-  <!-- Modal -->
-  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-label="Project gallery">
+  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-label="גלריה">
     <div class="modalbox">
       <div class="modalhead">
-        <h4 id="modalTitle">Gallery</h4>
-        <button id="closeBtn" class="close">Close</button>
+        <h4 id="modalTitle">גלריה</h4>
+        <button id="closeBtn" class="close">סגירה</button>
       </div>
       <div id="modalBody" class="gallery"></div>
     </div>
   </div>
 
   <script>
-    // ====== EDIT HERE: Add your projects ======
-    // For each project:
-    // - title: what it is
-    // - category: CRM | Chatbot | Contracts | Integrations | Other
-    // - summary: 1-2 lines
-    // - stack: array of tags
-    // - notionUrl: optional (put your Notion public link here)
-    // - shots: array of { src, caption }
+    // ====== הגדרות וואטסאפ ======
+    // החלף את המספר שלך בפורמט בינלאומי בלי פלוס, לדוגמה לישראל: 9725XXXXXXXX
+    const WHATSAPP_NUMBER = "9725XXXXXXXX";
+
+    // טקסט הודעה מוכן מראש
+    const WHATSAPP_PREFILL = "היי AutoScale, ראיתי את הפורטפוליו. אשמח לשיחה קצרה על CRM ו WhatsApp עבור העסק שלי. מה צריך ממני כדי להתחיל?";
+
+    function buildWhatsAppLink(){
+      const text = encodeURIComponent(WHATSAPP_PREFILL);
+      return `https://wa.me/${WHATSAPP_NUMBER}?text=${text}`;
+    }
+
+    document.getElementById("waTop").href = buildWhatsAppLink();
+    document.getElementById("waBottom").href = buildWhatsAppLink();
+
+    // ====== פרויקטים לדוגמה ======
+    // החלף כותרות, תיאורים ותמונות לפי מה שיש לך בפועל
+    // תמונות צריכות להיות ב: assets/screenshots/
     const projects = [
       {
-        title: "CRM Lead Intake + Auto-Tagging",
+        title: "קליטת לידים ל CRM עם תיוג וחלוקה אוטומטית",
         category: "CRM",
-        summary: "Facebook leads flow into CRM with validation, tagging, owner assignment, and follow-up sequences.",
-        stack: ["Make", "Facebook Leads", "CRM", "Webhooks"],
-        notionUrl: "https://www.notion.so/YOUR_PAGE_HERE",
+        summary: "לידים מפייסבוק ואינסטגרם נכנסים ל CRM עם בדיקות, תיוג לפי מקור, שיוך לנציג, ומשימות פולואפ אוטומטיות.",
+        stack: ["monday.com", "Facebook Lead Ads", "Instagram", "Make", "Webhooks"],
         shots: [
-          { src: "assets/screenshots/IMG_2969.PNG", caption: "Lead capture mapping and field normalization." },
-          { src: "assets/screenshots/crm-2.png", caption: "Auto-tagging logic and owner assignment." }
+          { src: "assets/screenshots/crm-flow-1.png", caption: "מיפוי שדות, ניקוי נתונים ובדיקות חובה לפני יצירת ליד." },
+          { src: "assets/screenshots/crm-board-1.png", caption: "תצוגת CRM עם סטטוסים, בעלות, תגים ותיעוד פעילות." }
         ]
       },
       {
-        title: "WhatsApp Chatbot: Support + Intake",
+        title: "WhatsApp בוט לסינון לידים והעברה לנציג",
         category: "Chatbot",
-        summary: "WhatsApp flow for FAQs, ticket opening, and lead qualification with human handoff.",
-        stack: ["WhatsApp", "Make/n8n", "AI", "CRM"],
-        notionUrl: "https://www.notion.so/YOUR_PAGE_HERE",
+        summary: "בוט WhatsApp שמבצע שאלות סינון, שומר ב CRM, ושולח לנציג כשיש ליד חם או בקשה אנושית.",
+        stack: ["WhatsApp", "WATI", "ManyChat", "Make", "CRM"],
         shots: [
-          { src: "assets/screenshots/chatbot-1.png", caption: "Conversation flow and intent routing." },
-          { src: "assets/screenshots/chatbot-2.png", caption: "Handoff to human and logging to CRM." }
+          { src: "assets/screenshots/wa-chat-1.png", caption: "שיחה לדוגמה: שאלות סינון, תשובות ותיוג ליד." },
+          { src: "assets/screenshots/wa-flow-1.png", caption: "ניתוב לפי כוונה, לוגים והעברה לנציג במקרה הצורך." }
         ]
       },
       {
-        title: "Contracts: Auto-Generate + Sign",
+        title: "חוזה מתוך CRM ושליחה לחתימה עם סטטוס",
         category: "Contracts",
-        summary: "Generate dynamic contracts from CRM data and send for e-signature with status tracking.",
-        stack: ["Docs", "E-sign", "CRM", "Automation"],
-        notionUrl: "https://www.notion.so/YOUR_PAGE_HERE",
+        summary: "מייצר חוזה אוטומטית מתוך נתוני הלקוח וההצעה, שולח לחתימה ומעדכן סטטוס ב CRM כולל תזכורות.",
+        stack: ["EasyDoc", "E-sign", "CRM", "Make"],
         shots: [
-          { src: "assets/screenshots/contracts-1.png", caption: "Template variables and dynamic sections." },
-          { src: "assets/screenshots/contracts-2.png", caption: "Signature flow and status updates." }
+          { src: "assets/screenshots/contract-template-1.png", caption: "תבנית חוזה עם משתנים וסעיפים דינמיים." },
+          { src: "assets/screenshots/contract-status-1.png", caption: "מעקב סטטוס חתימה ועדכונים אוטומטיים." }
         ]
       },
       {
-        title: "Invoices: Upload + Classification",
+        title: "תיאום פגישות אוטומטי עם Calendly ועדכון CRM",
         category: "Integrations",
-        summary: "Invoice intake pipeline that uploads, classifies, and pushes metadata into the system.",
-        stack: ["Drive", "OCR", "Make", "Accounting"],
-        notionUrl: "https://www.notion.so/YOUR_PAGE_HERE",
+        summary: "לקוח קובע פגישה לבד, נוצר אירוע, נשלחות הודעות אישור ותזכורת, ונפתח או מתעדכן כרטיס ב CRM.",
+        stack: ["Calendly", "Google Calendar", "Zoom", "CRM", "n8n"],
         shots: [
-          { src: "assets/screenshots/invoices-1.png", caption: "Upload trigger and file handling." }
+          { src: "assets/screenshots/calendly-1.png", caption: "עמוד קביעת פגישה עם סוגי פגישות וזמינות." },
+          { src: "assets/screenshots/meeting-flow-1.png", caption: "יצירת פגישה, שליחת הודעות ותיעוד מלא ב CRM." }
         ]
       }
     ];
-    // ====== STOP EDITING HERE (unless you want customization) ======
 
     const grid = document.getElementById("grid");
     const search = document.getElementById("search");
@@ -281,13 +404,14 @@
     }
 
     function cardTemplate(p, idx){
-      const chips = p.stack.map(t => `<span class="chip">${escapeHtml(t)}</span>`).join("");
-      const notionBtn = p.notionUrl && p.notionUrl.includes("http")
-        ? `<a class="btn good" href="${escapeHtml(p.notionUrl)}" target="_blank" rel="noopener">Open details (Notion)</a>`
-        : `<button class="btn good" disabled title="Add a notionUrl to enable">Open details (Notion)</button>`;
-
       const shotCount = (p.shots || []).length;
-      const thumbText = shotCount ? `${shotCount} screenshot${shotCount === 1 ? "" : "s"} in gallery` : "No screenshots yet";
+      const thumbText = shotCount ? `${shotCount} תמונות בגלריה` : "אין עדיין תמונות";
+      const chips = (p.stack || []).slice(0, 6).map(t => `<span class="chip">${escapeHtml(t)}</span>`).join("");
+
+      let badgeText = p.category;
+      if(p.category === "Chatbot") badgeText = "WhatsApp";
+      if(p.category === "Contracts") badgeText = "חוזים וחתימה";
+      if(p.category === "Integrations") badgeText = "אינטגרציות";
 
       return `
         <article class="card" data-idx="${idx}">
@@ -298,14 +422,12 @@
                 <h3>${escapeHtml(p.title)}</h3>
                 <div class="meta">${escapeHtml(p.summary)}</div>
               </div>
-              <span class="badge">${escapeHtml(p.category)}</span>
+              <span class="badge">${escapeHtml(badgeText)}</span>
             </div>
             <div class="chips">${chips}</div>
             <div class="actions">
-              <button class="btn primary" ${shotCount ? "" : "disabled"} data-open="${idx}">
-                View gallery
-              </button>
-              ${notionBtn}
+              <button class="btn primary" ${shotCount ? "" : "disabled"} data-open="${idx}">צפייה בגלריה</button>
+              <a class="btn good" href="${buildWhatsAppLink()}" target="_blank" rel="noopener">דברו איתי ב WhatsApp</a>
             </div>
           </div>
         </article>
@@ -323,9 +445,8 @@
         return matchesSearch && matchesCat;
       });
 
-      grid.innerHTML = filtered.map((p, i) => cardTemplate(p, projects.indexOf(p))).join("");
+      grid.innerHTML = filtered.map((p) => cardTemplate(p, projects.indexOf(p))).join("");
 
-      // bind gallery buttons
       grid.querySelectorAll("[data-open]").forEach(btn => {
         btn.addEventListener("click", (e) => {
           const idx = Number(e.currentTarget.getAttribute("data-open"));
@@ -336,15 +457,16 @@
 
     function openModal(idx){
       const p = projects[idx];
-      modalTitle.textContent = `${p.title} • Gallery`;
+      modalTitle.textContent = `${p.title} | גלריה`;
+
       const shots = (p.shots || []).map(s => `
         <div class="shot">
-          <img src="${escapeHtml(s.src)}" alt="${escapeHtml(p.title)} screenshot" loading="lazy" />
+          <img src="${escapeHtml(s.src)}" alt="צילום מסך" loading="lazy" />
           <div class="cap">${escapeHtml(s.caption || "")}</div>
         </div>
       `).join("");
 
-      modalBody.innerHTML = shots || `<div style="padding:14px;color:var(--muted);">No screenshots yet.</div>`;
+      modalBody.innerHTML = shots || `<div style="padding:14px;color:var(--muted);">אין עדיין תמונות.</div>`;
       modal.classList.add("open");
       document.body.style.overflow = "hidden";
     }
