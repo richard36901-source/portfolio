@@ -17,6 +17,7 @@
       --shadow:0 10px 30px rgba(0,0,0,.38);
       --cta:#6aa6ff;
       --cta2:#7cffa6;
+      --wa:#25D366;
     }
 
     *{ box-sizing:border-box; }
@@ -48,6 +49,8 @@
       gap:12px;
       text-align:center;
     }
+
+    /* Logo slot */
     .logo{
       width:44px; height:44px; border-radius:14px;
       border:1px solid rgba(106,166,255,.35);
@@ -55,12 +58,22 @@
       display:flex; align-items:center; justify-content:center;
       font-weight:900;
       flex:0 0 auto;
+      overflow:hidden;
     }
+    .logo img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+
     h1{
       margin:0;
       font-size:22px;
       letter-spacing:.2px;
     }
+    .ltr{ direction:ltr; unicode-bidi: embed; display:inline-block; }
+
     .sub{
       margin-top:10px;
       text-align:center;
@@ -86,24 +99,30 @@
       font-size:14px;
       cursor:pointer;
       white-space:nowrap;
-      transition: transform .12s ease, border-color .12s ease;
+      transition: transform .12s ease, border-color .12s ease, background .12s ease;
     }
     .btn:active{ transform: scale(.99); }
 
-    .btnCta{
-      border-color: rgba(106,166,255,.65);
-      background: rgba(106,166,255,.18);
+    /* WhatsApp green */
+    .btnWa{
+      border-color: rgba(37,211,102,.70);
+      background: rgba(37,211,102,.16);
+      font-weight:800;
     }
-    .btnCta:hover{
-      border-color: rgba(106,166,255,.95);
+    .btnWa:hover{
+      border-color: rgba(37,211,102,.95);
+      background: rgba(37,211,102,.22);
     }
 
-    .btnGreen{
-      border-color: rgba(124,255,166,.60);
-      background: rgba(124,255,166,.12);
+    /* Calendly blue */
+    .btnBlue{
+      border-color: rgba(106,166,255,.75);
+      background: rgba(106,166,255,.18);
+      font-weight:800;
     }
-    .btnGreen:hover{
-      border-color: rgba(124,255,166,.95);
+    .btnBlue:hover{
+      border-color: rgba(106,166,255,.95);
+      background: rgba(106,166,255,.24);
     }
 
     .controls{
@@ -204,10 +223,42 @@
       color:rgba(234,240,255,.92);
     }
     .caseDesc{
-      padding:0 14px 12px;
+      padding:0 14px 10px;
       color:var(--muted);
       font-size:13px;
       line-height:1.6;
+    }
+
+    /* Project tags */
+    .tagRow{
+      padding:0 14px 12px;
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+    }
+    .tag{
+      font-size:12px;
+      padding:6px 9px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(15,22,38,.55);
+      color:var(--muted);
+    }
+
+    /* Outcome row: מה יצא מזה */
+    .outcomeRow{
+      padding:0 14px 12px;
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+    }
+    .outcome{
+      font-size:12px;
+      padding:6px 9px;
+      border-radius:999px;
+      border:1px solid rgba(124,255,166,.35);
+      background: rgba(124,255,166,.08);
+      color: rgba(234,240,255,.90);
     }
 
     .thumbGrid{
@@ -249,15 +300,6 @@
     }
     .caseCta .btn{
       min-width: 260px;
-      font-weight:800;
-      border-color: rgba(106,166,255,.75);
-      background: rgba(106,166,255,.20);
-    }
-
-    .divider{
-      height:1px;
-      background: rgba(255,255,255,.08);
-      margin:14px 0;
     }
 
     .timelineWrap{
@@ -294,9 +336,7 @@
       border-radius:16px;
       padding:12px;
       margin:10px 0;
-      box-shadow: 0 0 0 rgba(0,0,0,0);
-      transform: translateY(0);
-      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+      transition: box-shadow .18s ease, border-color .18s ease, transform .18s ease;
     }
     .dot{
       position:absolute;
@@ -308,17 +348,47 @@
       border:2px solid rgba(255,255,255,.22);
       background: rgba(11,15,23,.9);
       transform: translateX(50%);
-      transition: border-color .18s ease, background .18s ease;
+      transition: border-color .18s ease, background .18s ease, transform .18s ease;
     }
-    .step.active{
-      border-color: rgba(106,166,255,.65);
-      box-shadow: 0 12px 32px rgba(0,0,0,.35);
-      transform: translateY(-2px);
+
+    /* Desktop: pop only on hover */
+    @media (hover:hover){
+      .step:hover{
+        border-color: rgba(106,166,255,.55);
+        box-shadow: 0 12px 32px rgba(0,0,0,.35);
+        transform: translateY(-2px);
+      }
+      .step:hover .dot{
+        transform: translateX(50%) scale(1.08);
+        border-color: rgba(106,166,255,.70);
+      }
+      .step.active{
+        border-color: rgba(106,166,255,.55);
+      }
+      .step.active .dot{
+        border-color: rgba(106,166,255,.85);
+      }
     }
-    .step.active .dot{
+
+    /* Mobile: pop on active while scrolling */
+    @media (hover:none){
+      .step.active{
+        border-color: rgba(106,166,255,.70);
+        box-shadow: 0 12px 32px rgba(0,0,0,.35);
+        transform: translateY(-2px);
+      }
+      .step.active .dot{
+        border-color: rgba(106,166,255,.95);
+        transform: translateX(50%) scale(1.10);
+      }
+    }
+
+    /* Completed steps: fill dot */
+    .step.completed .dot{
       border-color: rgba(106,166,255,.95);
-      background: rgba(106,166,255,.45);
+      background: rgba(106,166,255,.55);
     }
+
     .stepTitle{
       margin:0 0 6px;
       font-size:14px;
@@ -445,8 +515,12 @@
 
     <div class="top">
       <div class="titleRow">
-        <div class="logo">AS</div>
-        <h1>AutoScale תיק עבודות</h1>
+        <div class="logo">
+          <!-- Put your logo here: assets/logo.png -->
+          <!-- If missing, the fallback text shows -->
+          <img src="assets/logo.png" alt="AutoScale Logo" onerror="this.remove(); this.parentElement.textContent='AS';" />
+        </div>
+        <h1>תיק עבודות <span class="ltr">AutoScale</span></h1>
       </div>
 
       <div class="sub">
@@ -454,11 +528,11 @@
       </div>
 
       <div class="ctaTop">
-        <a id="waTop" class="btn btnCta" href="#" target="_blank" rel="noopener">דברי/י איתנו בווצאפ</a>
+        <a id="waTop" class="btn btnWa" href="#" target="_blank" rel="noopener">💬 דברי/י איתנו ב WhatsApp</a>
       </div>
 
       <div class="controls">
-        <input id="search" class="search" type="search" placeholder="חיפוש: monday, wati, lead, חוזה, calendly..." />
+        <input id="search" class="search" type="search" placeholder="חיפוש: monday, manychat, wati, google meet, calendly..." />
         <select id="filter">
           <option value="all">כל הקטגוריות</option>
           <option value="CRM">CRM</option>
@@ -475,7 +549,7 @@
     </div>
 
     <section class="section">
-      <h2 class="sectionTitle">למי זה מתאים</h2>
+      <h2 class="sectionTitle">🎯 למי זה מתאים</h2>
       <div class="cols">
         <div class="col">
           <h3>עסקים שמקבלים לידים ורוצים סדר</h3>
@@ -499,7 +573,7 @@
     <div id="showcases" class="showcases"></div>
 
     <section class="section">
-      <h2 class="sectionTitle">אפשרויות עבודה</h2>
+      <h2 class="sectionTitle">⚙️ אפשרויות עבודה</h2>
       <div class="cols">
         <div class="col">
           <h3>פרויקט הקמה</h3>
@@ -512,7 +586,7 @@
         <div class="col">
           <h3>שדרוג, תחזוקה והדרכה</h3>
           <ul class="bullets">
-            <li>בנק שעות לשדרוג מערכת קיימת, תיקונים ושיפורים</li>
+            <li>שדרוג מערכת קיימת, תיקונים ושיפורים</li>
             <li>תמיכה חודשית למערכות פעילות כולל פתרון תקלות</li>
             <li>הדרכה וליווי לצוות ב CRM, WhatsApp ותהליכים</li>
             <li>ביקורת מערכת קיימת והמלצות לשדרוג מהיר</li>
@@ -522,7 +596,7 @@
     </section>
 
     <section class="section">
-      <h2 class="sectionTitle">איך מתחילים</h2>
+      <h2 class="sectionTitle">🧭 איך מתחילים</h2>
 
       <div class="timelineWrap">
         <div class="timeline">
@@ -533,7 +607,7 @@
             <h3 class="stepTitle">קביעת שיחת אפיון</h3>
             <p class="stepText">קובעים שיחה קצרה כדי להבין מטרה, מצב קיים ומה התוצאה שאתה רוצה.</p>
             <div class="stepActions">
-              <a class="btn btnGreen" href="https://calendly.com/richardtomskiy/30min" target="_blank" rel="noopener">לקביעת שיחת איפיון</a>
+              <a class="btn btnBlue" href="https://calendly.com/richardtomskiy/30min" target="_blank" rel="noopener">📅 לקביעת שיחת איפיון</a>
             </div>
           </div>
 
@@ -576,14 +650,14 @@
           <div class="step" data-step="8">
             <div class="dot"></div>
             <h3 class="stepTitle">תמיכה לכל אורך הדרך ואחריה</h3>
-            <p class="stepText">אפשר בנק שעות או תמיכה חודשית לפי צורך.</p>
+            <p class="stepText">תמיכה חודשית לפי צורך.</p>
           </div>
 
         </div>
       </div>
 
       <div class="footerCta">
-        <a id="waBottom" class="btn btnCta" href="#" target="_blank" rel="noopener">דברי/י איתנו בווצאפ</a>
+        <a id="waBottom" class="btn btnWa" href="#" target="_blank" rel="noopener">💬 דברי/י איתנו ב WhatsApp</a>
       </div>
     </section>
 
@@ -634,6 +708,8 @@
         category: "Chatbot",
         summary: "בוט WhatsApp שמבצע שאלות סינון, שומר מידע, ומעביר לנציג כשצריך.",
         ctaText: "ראיתי את הווצאפ בוט בתיק עבודות אני גם רוצה",
+        tags: ["WhatsApp", "WhatsApp רשמי", "WATI", "ManyChat", "Green API", "API Business Cloud", "Make", "n8n"],
+        outcomes: ["⚡ מענה מיידי לליד", "🧠 סינון לידים חכם", "👤 העברה לנציג כשצריך", "📌 תיעוד מסודר"],
         images: [
           { src: "assets/screenshots/wa-chat-1.png", caption: "שיחה לדוגמה עם שאלות סינון ותיעוד." },
           { src: "assets/screenshots/wa-flow-1.png", caption: "לוגיקה וניהול מסלולים לפי כוונה." }
@@ -645,9 +721,11 @@
         category: "CRM",
         summary: "קליטת לידים אוטומטית, תיוג לפי מקור, שיוך לנציג, משימות ופולואפ.",
         ctaText: "ראיתי את מערכת ה CRM בתיק עבודות אני גם רוצה",
+        tags: ["CRM", "monday.com", "Fireberry", "Airtable", "ClickUp", "Smartsheet", "GHL", "Make", "Zapier"],
+        outcomes: ["📌 פחות פספוס לידים", "🧩 סדר בסטטוסים ובעלות", "🔔 משימות והתראות אוטומטיות", "⚙️ תהליך פולואפ מובנה"],
         images: [
           { src: "assets/screenshots/crm-board-1.png", caption: "לוח CRM עם סטטוסים, בעלות ומשימות." },
-          { src: "assets/screenshots/crm-flow-1.png", caption: "קליטת ליד עם בדיקות וניקוי נתונים." }
+          { src: "assets/screenshots/crm-flow-1.png", caption: "קליטת ליד עם בדיקות וניקוי נתונים." },
         ]
       },
       {
@@ -656,6 +734,8 @@
         category: "Contracts",
         summary: "יצירת חוזה מתוך נתוני CRM, שליחה לחתימה, סטטוסים ותזכורות.",
         ctaText: "ראיתי את תהליך החוזים והחתימה בתיק עבודות אני גם רוצה",
+        tags: ["חוזים", "חתימה דיגיטלית", "EasyDoc", "איסוף מסמכים", "מעטפת מסמכים", "Make", "n8n"],
+        outcomes: ["✍️ פחות עבודת יד", "📄 מסמכים אחידים ומסודרים", "⏱️ קיצור זמן חתימה", "🔁 תזכורות וסטטוסים אוטומטיים"],
         images: [
           { src: "assets/screenshots/contract-template-1.png", caption: "תבנית חוזה עם משתנים וסעיפים דינמיים." },
           { src: "assets/screenshots/contract-status-1.png", caption: "סטטוס חתימה ועדכונים אוטומטיים." }
@@ -667,6 +747,8 @@
         category: "Integrations",
         summary: "קביעת פגישה, תזכורות אוטומטיות ותיעוד במערכת.",
         ctaText: "ראיתי את תיאום הפגישות בתיק עבודות אני גם רוצה",
+        tags: ["Calendly", "Google Calendar", "Google Meet", "Zoom", "CRM", "WhatsApp", "Make", "n8n"],
+        outcomes: ["📅 לקוח קובע לבד", "🔔 תזכורות שמפחיתות הברזות", "🧾 תיעוד אוטומטי ב CRM", "🤝 לינק לשיחה מוכן"],
         images: [
           { src: "assets/screenshots/calendly-1.png", caption: "דף קביעת פגישה עם זמינות." },
           { src: "assets/screenshots/meeting-flow-1.png", caption: "יצירת פגישה, הודעות ותיעוד." }
@@ -682,6 +764,22 @@
       return String(s).replace(/[&<>"']/g, ch => ({
         "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
       }[ch]));
+    }
+
+    function buildTags(tags){
+      if(!tags || !tags.length) return "";
+      const limited = tags.slice(0, 10);
+      return "<div class=\"tagRow\">"
+        + limited.map(t => "<span class=\"tag\">" + esc(t) + "</span>").join("")
+        + "</div>";
+    }
+
+    function buildOutcomes(outcomes){
+      if(!outcomes || !outcomes.length) return "";
+      const limited = outcomes.slice(0, 4);
+      return "<div class=\"outcomeRow\">"
+        + limited.map(t => "<span class=\"outcome\">" + esc(t) + "</span>").join("")
+        + "</div>";
     }
 
     function buildCard(p, idx){
@@ -704,9 +802,11 @@
         +     "<span class=\"badge\">" + esc(badgeName(p.category)) + "</span>"
         +   "</div>"
         +   "<div class=\"caseDesc\">" + esc(p.summary) + "</div>"
+        +   buildTags(p.tags)
+        +   buildOutcomes(p.outcomes)
         +   "<div class=\"thumbGrid\">" + thumbs + "</div>"
         +   "<div class=\"caseCta\">"
-        +     "<a class=\"btn\" href=\"" + waLink(waMsg) + "\" target=\"_blank\" rel=\"noopener\">דברי/י איתנו בווצאפ</a>"
+        +     "<a class=\"btn btnWa\" href=\"" + waLink(waMsg) + "\" target=\"_blank\" rel=\"noopener\">דברי/י איתנו ב WhatsApp</a>"
         +   "</div>"
         + "</article>";
     }
@@ -718,7 +818,9 @@
       const cat = (filter && filter.value ? filter.value : "all");
 
       const filtered = projects.filter(p => {
-        const hay = (p.title + " " + p.summary).toLowerCase();
+        const tagText = (p.tags || []).join(" ");
+        const outText = (p.outcomes || []).join(" ");
+        const hay = (p.title + " " + p.summary + " " + tagText + " " + outText + " " + p.category).toLowerCase();
         const okSearch = !q || hay.includes(q);
         const okCat = (cat === "all") || (p.category === cat);
         return okSearch && okCat;
@@ -727,7 +829,7 @@
       showcases.innerHTML = filtered.map((p) => buildCard(p, projects.indexOf(p))).join("");
 
       showcases.querySelectorAll("[data-open]").forEach(el => {
-        el.addEventListener("click", (e) => {
+        el.addEventListener("click", () => {
           const projIdx = Number(el.getAttribute("data-open"));
           const imgIdx = Number(el.getAttribute("data-img"));
           openLightbox(projIdx, imgIdx);
@@ -806,8 +908,10 @@
 
     function setActiveStep(index){
       steps.forEach((s, i) => {
+        s.classList.remove("active");
+        s.classList.remove("completed");
+        if(i < index) s.classList.add("completed");
         if(i === index) s.classList.add("active");
-        else s.classList.remove("active");
       });
 
       if(lineFill){
@@ -817,7 +921,6 @@
     }
 
     if(steps.length){
-      let current = 0;
       const io = new IntersectionObserver((entries) => {
         const visible = entries
           .filter(en => en.isIntersecting)
@@ -825,10 +928,7 @@
 
         if(visible){
           const idx = steps.indexOf(visible.target);
-          if(idx >= 0){
-            current = idx;
-            setActiveStep(current);
-          }
+          if(idx >= 0) setActiveStep(idx);
         }
       }, { threshold: [0.25, 0.45, 0.65] });
 
