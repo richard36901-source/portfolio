@@ -413,6 +413,42 @@
       justify-content:center;
     }
 
+    /* Testimonials */
+    .testiGrid{
+      margin-top:16px;
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap:14px;
+    }
+    .testiCard{
+      grid-column: span 6;
+      border:1px solid var(--border);
+      background: var(--card);
+      border-radius:18px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    @media (max-width: 900px){ .testiCard{ grid-column: span 12; } }
+
+    .testiHead{
+      padding:14px 14px 8px;
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:10px;
+    }
+    .testiTitle{
+      margin:0;
+      font-size:16px;
+      font-weight:800;
+    }
+    .testiDesc{
+      padding:0 14px 12px;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.6;
+    }
+
     /* Lightbox */
     .lightbox{
       position:fixed;
@@ -516,8 +552,6 @@
     <div class="top">
       <div class="titleRow">
         <div class="logo">
-          <!-- Put your logo here: assets/logo.png -->
-          <!-- If missing, the fallback text shows -->
           <img src="assets/logo.png" alt="AutoScale Logo" onerror="this.remove(); this.parentElement.textContent='AS';" />
         </div>
         <h1>תיק עבודות <span class="ltr">AutoScale</span></h1>
@@ -571,6 +605,13 @@
     </section>
 
     <div id="showcases" class="showcases"></div>
+
+    <!-- Testimonials section -->
+    <section class="section">
+      <h2 class="sectionTitle">⭐ לקוחות מספרים</h2>
+      <div class="note">העלו צילומי מסך של הודעות WhatsApp, מיילים, או המלצות. (ללא פרטים מזהים)</div>
+      <div id="testimonials" class="testiGrid"></div>
+    </section>
 
     <section class="section">
       <h2 class="sectionTitle">⚙️ אפשרויות עבודה</h2>
@@ -704,9 +745,9 @@
     const projects = [
       {
         id: "whatsapp-bot",
-        title: "WhatsApp בוט לניהול נוח יותר של העסק
+        title: "WhatsApp בוט לניהול נוח יותר של העסק",
         category: "Chatbot",
-        summary: "בוט WhatsApp פתיחת תקלות,סריקת חשבוניות וסינון לידים או החלפת שירות הלקוחות והעברה לנציג רק אם באמת צריך".",
+        summary: "בוט WhatsApp לפתיחת תקלות, סריקת חשבוניות וסינון לידים, או החלפת שירות הלקוחות והעברה לנציג רק אם באמת צריך.",
         ctaText: "ראיתי את הווצאפ בוט בתיק עבודות אני גם רוצה",
         tags: ["WhatsApp", "WhatsApp רשמי", "WATI", "ManyChat", "Green API", "API Business Cloud", "Make", "n8n"],
         outcomes: ["⚡ מענה מיידי לליד", "🧠 סינון לידים חכם", "👤 אין הוצאות שהולכות לאיבוד", "📌 תיעוד מסודר"],
@@ -725,7 +766,7 @@
         outcomes: ["📌 פחות פספוס לידים", "🧩 סדר בסטטוסים ובעלות", "🔔 משימות והתראות אוטומטיות", "⚙️ תהליך פולואפ מובנה"],
         images: [
           { src: "assets/screenshots/CRM1.png", caption: "לוח CRM עם סטטוסים, בעלות ומשימות." },
-          { src: "assets/screenshots/CRM2.png", caption: "קליטת ליד עם בדיקות וניקוי נתונים." },
+          { src: "assets/screenshots/CRM2.png", caption: "קליטת ליד עם בדיקות וניקוי נתונים." }
         ]
       },
       {
@@ -756,7 +797,27 @@
       }
     ];
 
+    /* Testimonials: add screenshot images here */
+    const testimonials = [
+      {
+        title: "המלצה מלקוח, WhatsApp",
+        summary: "שיפור סדר, מענה מהיר וחיסכון בזמן.",
+        images: [
+          { src: "assets/testimonials/t1.png", caption: "המלצה 1" },
+          { src: "assets/testimonials/t2.png", caption: "המלצה 2" }
+        ]
+      },
+      {
+        title: "המלצה מלקוח, מייל",
+        summary: "אוטומציה שחוסכת עבודה ידנית ומקצרת זמני טיפול.",
+        images: [
+          { src: "assets/testimonials/t3.png", caption: "המלצה 3" }
+        ]
+      }
+    ];
+
     const showcases = document.getElementById("showcases");
+    const testimonialsEl = document.getElementById("testimonials");
     const search = document.getElementById("search");
     const filter = document.getElementById("filter");
 
@@ -783,7 +844,7 @@
     }
 
     function buildCard(p, idx){
-      const thumbs = p.images.map((img, j) => {
+      const thumbs = (p.images || []).map((img, j) => {
         return ""
           + "<div class=\"thumb\" data-open=\"" + idx + "\" data-img=\"" + j + "\">"
           +   "<img src=\"" + esc(img.src) + "\" alt=\"צילום מסך\" loading=\"lazy\" />"
@@ -811,6 +872,26 @@
         + "</article>";
     }
 
+    function buildTestimonialCard(t, tIdx){
+      const thumbs = (t.images || []).map((img, j) => {
+        return ""
+          + "<div class=\"thumb\" data-topen=\"" + tIdx + "\" data-timg=\"" + j + "\">"
+          +   "<img src=\"" + esc(img.src) + "\" alt=\"המלצה\" loading=\"lazy\" />"
+          +   "<div class=\"cap\">" + esc(img.caption || "") + "</div>"
+          + "</div>";
+      }).join("");
+
+      return ""
+        + "<article class=\"testiCard\">"
+        +   "<div class=\"testiHead\">"
+        +     "<div class=\"testiTitle\">" + esc(t.title) + "</div>"
+        +     "<span class=\"badge\">המלצות</span>"
+        +   "</div>"
+        +   "<div class=\"testiDesc\">" + esc(t.summary || "") + "</div>"
+        +   "<div class=\"thumbGrid\">" + thumbs + "</div>"
+        + "</article>";
+    }
+
     function render(){
       if(!showcases) return;
 
@@ -832,7 +913,20 @@
         el.addEventListener("click", () => {
           const projIdx = Number(el.getAttribute("data-open"));
           const imgIdx = Number(el.getAttribute("data-img"));
-          openLightbox(projIdx, imgIdx);
+          openProjectLightbox(projIdx, imgIdx);
+        });
+      });
+    }
+
+    function renderTestimonials(){
+      if(!testimonialsEl) return;
+      testimonialsEl.innerHTML = testimonials.map(buildTestimonialCard).join("");
+
+      testimonialsEl.querySelectorAll("[data-topen]").forEach(el => {
+        el.addEventListener("click", () => {
+          const tIdx = Number(el.getAttribute("data-topen"));
+          const imgIdx = Number(el.getAttribute("data-timg"));
+          openTestimonialLightbox(tIdx, imgIdx);
         });
       });
     }
@@ -840,7 +934,7 @@
     if(search) search.addEventListener("input", render);
     if(filter) filter.addEventListener("change", render);
 
-    /* Lightbox logic */
+    /* Lightbox logic (shared) */
     const lightbox = document.getElementById("lightbox");
     const lbImg = document.getElementById("lbImg");
     const lbCap = document.getElementById("lbCap");
@@ -849,11 +943,17 @@
     const lbPrev = document.getElementById("lbPrev");
     const lbNext = document.getElementById("lbNext");
 
+    let lbMode = "projects"; // "projects" | "testimonials"
     let currentProj = 0;
     let currentImg = 0;
 
+    function getSourceArray(){
+      return (lbMode === "testimonials") ? testimonials : projects;
+    }
+
     function showLightbox(){
-      const p = projects[currentProj];
+      const arr = getSourceArray();
+      const p = arr[currentProj];
       const img = p.images[currentImg];
       if(lbTitle) lbTitle.textContent = p.title;
       if(lbImg) lbImg.src = img.src;
@@ -862,8 +962,16 @@
       document.body.style.overflow = "hidden";
     }
 
-    function openLightbox(projIdx, imgIdx){
+    function openProjectLightbox(projIdx, imgIdx){
+      lbMode = "projects";
       currentProj = projIdx;
+      currentImg = imgIdx;
+      showLightbox();
+    }
+
+    function openTestimonialLightbox(tIdx, imgIdx){
+      lbMode = "testimonials";
+      currentProj = tIdx;
       currentImg = imgIdx;
       showLightbox();
     }
@@ -874,13 +982,15 @@
     }
 
     function prevImg(){
-      const p = projects[currentProj];
+      const arr = getSourceArray();
+      const p = arr[currentProj];
       currentImg = (currentImg - 1 + p.images.length) % p.images.length;
       showLightbox();
     }
 
     function nextImg(){
-      const p = projects[currentProj];
+      const arr = getSourceArray();
+      const p = arr[currentProj];
       currentImg = (currentImg + 1) % p.images.length;
       showLightbox();
     }
@@ -937,6 +1047,7 @@
     }
 
     render();
+    renderTestimonials();
   </script>
 </body>
 </html>
