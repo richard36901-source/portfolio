@@ -8,17 +8,19 @@
 
   <style>
     :root{
-      --bg:#f5f5f7;
-      --text:#0b0f17;
-      --muted:#667085;
-      --card:#ffffff;
-      --border:rgba(15,23,42,.10);
-      --shadow:0 14px 40px rgba(15,23,42,.08);
-      --shadow2:0 10px 26px rgba(15,23,42,.10);
-      --blue:#0071e3;
-      --blue2:#2b8cff;
-      --wa:#25D366;
-      --radius:18px;
+      /* Apple-like dark, clean */
+      --bg0:#0b1220;
+      --bg1:#0a0f1a;
+      --panel: rgba(255,255,255,.06);
+      --card: rgba(255,255,255,.07);
+      --muted: rgba(234,240,255,.72);
+      --text: rgba(234,240,255,.92);
+      --border: rgba(255,255,255,.10);
+      --shadow: 0 18px 45px rgba(0,0,0,.45);
+
+      --blue: rgba(106,166,255,1);
+      --green: rgba(124,255,166,1);
+      --wa: #25D366;
     }
 
     *{ box-sizing:border-box; }
@@ -27,25 +29,21 @@
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
       color:var(--text);
       background:
-        radial-gradient(900px 520px at 18% 0%, rgba(0,113,227,.10), transparent 60%),
-        radial-gradient(840px 520px at 88% 10%, rgba(43,140,255,.08), transparent 60%),
-        var(--bg);
+        radial-gradient(900px 520px at 15% 0%, rgba(106,166,255,.18), transparent 55%),
+        radial-gradient(900px 520px at 85% 10%, rgba(124,255,166,.10), transparent 60%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
     }
     a{ color:inherit; text-decoration:none; }
 
-    .wrap{ max-width:1100px; margin:0 auto; padding:28px 16px 72px; }
+    .wrap{ max-width:1100px; margin:0 auto; padding:26px 16px 70px; }
 
-    .card{
+    .top{
       border:1px solid var(--border);
-      background:var(--card);
-      border-radius:var(--radius);
+      background: rgba(255,255,255,.05);
+      border-radius:20px;
       box-shadow:var(--shadow);
-    }
-
-    .hero{
-      padding:18px 18px 16px;
-      overflow:hidden;
-      position:relative;
+      padding:22px 18px 16px;
+      backdrop-filter: blur(10px);
     }
 
     .titleRow{
@@ -54,42 +52,31 @@
       align-items:center;
       gap:12px;
       text-align:center;
-      padding-top:4px;
     }
 
     .logo{
-      width:46px; height:46px; border-radius:14px;
-      border:1px solid rgba(0,113,227,.22);
-      background: linear-gradient(135deg, rgba(0,113,227,.12), rgba(43,140,255,.06));
+      width:44px; height:44px; border-radius:14px;
+      border:1px solid rgba(255,255,255,.14);
+      background: linear-gradient(135deg, rgba(106,166,255,.20), rgba(124,255,166,.10));
       display:flex; align-items:center; justify-content:center;
       font-weight:900;
       flex:0 0 auto;
       overflow:hidden;
     }
-    .logo img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      display:block;
-    }
+    .logo img{ width:100%; height:100%; object-fit:cover; display:block; }
 
-    h1{
-      margin:0;
-      font-size:22px;
-      letter-spacing:.2px;
-      font-weight:800;
-    }
+    h1{ margin:0; font-size:22px; letter-spacing:.2px; }
     .ltr{ direction:ltr; unicode-bidi: embed; display:inline-block; }
 
     .sub{
       margin-top:10px;
       text-align:center;
       color:var(--muted);
-      line-height:1.65;
+      line-height:1.7;
       font-size:14px;
     }
 
-    .heroCtas{
+    .ctaTop{
       display:flex;
       justify-content:center;
       gap:10px;
@@ -104,184 +91,112 @@
       gap:10px;
       padding:11px 14px;
       border-radius:14px;
-      border:1px solid var(--border);
-      background:#fff;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
       font-size:14px;
       cursor:pointer;
       white-space:nowrap;
-      transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
-      box-shadow:0 10px 20px rgba(15,23,42,.06);
-      font-weight:700;
+      transition: transform .12s ease, border-color .12s ease, background .12s ease;
+      backdrop-filter: blur(10px);
     }
     .btn:active{ transform: scale(.99); }
 
-    .btnBlue{
-      border-color: rgba(0,113,227,.22);
-      background: rgba(0,113,227,.08);
-      color:#0b1a33;
-    }
-    .btnBlue:hover{
-      border-color: rgba(0,113,227,.35);
-      box-shadow:0 14px 28px rgba(0,113,227,.10);
-    }
-
     .btnWa{
-      border-color: rgba(37,211,102,.35);
-      background: rgba(37,211,102,.12);
+      border-color: rgba(37,211,102,.55);
+      background: rgba(37,211,102,.14);
       font-weight:800;
     }
     .btnWa:hover{
-      border-color: rgba(37,211,102,.55);
-      box-shadow:0 14px 28px rgba(37,211,102,.10);
+      border-color: rgba(37,211,102,.80);
+      background: rgba(37,211,102,.18);
+    }
+
+    .btnBlue{
+      border-color: rgba(106,166,255,.55);
+      background: rgba(106,166,255,.14);
+      font-weight:800;
+    }
+    .btnBlue:hover{
+      border-color: rgba(106,166,255,.80);
+      background: rgba(106,166,255,.18);
     }
 
     .note{
-      margin-top:10px;
-      color:var(--muted);
+      margin-top:12px;
+      color:rgba(234,240,255,.62);
       font-size:12px;
       line-height:1.6;
       text-align:center;
     }
 
-    /* Trust rows (clients + partners) */
-    .trustRow{
+    /* Natural "strip" row (clients logos) */
+    .strip{
       margin-top:14px;
-      display:grid;
-      grid-template-columns: 1fr;
-      gap:12px;
-    }
-
-    /* Clients marquee: looks like a “thin row” not a section */
-    .marqueeWrap{
-      border:1px solid rgba(15,23,42,.08);
-      background: rgba(255,255,255,.70);
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
       border-radius:16px;
-      box-shadow: var(--shadow2);
-      padding:10px 10px;
+      padding:10px 12px;
       overflow:hidden;
       position:relative;
+      backdrop-filter: blur(10px);
     }
-    .marqueeInner{
+
+    .marquee{
       display:flex;
       align-items:center;
-      gap:14px;
-      min-height:46px;
-      opacity:.92;
+      gap:10px;
+      width:100%;
+      overflow:hidden;
     }
     .marqueeTrack{
       display:flex;
+      gap:10px;
       align-items:center;
-      gap:18px;
       width:max-content;
+      animation: marqueeRight 22s linear infinite;
       will-change: transform;
-      animation: marqueeRight 24s linear infinite;
     }
-
-    /* Make it never empty: track contains two copies */
     @keyframes marqueeRight{
       from{ transform: translateX(-50%); }
       to{ transform: translateX(0%); }
     }
 
-    .clientLogo{
-      display:flex;
+    .logoPill{
+      display:inline-flex;
       align-items:center;
       justify-content:center;
-      height:34px;
-      padding:6px 10px;
-      border-radius:12px;
-      border:1px solid rgba(15,23,42,.08);
-      background: rgba(255,255,255,.85);
-      box-shadow: 0 10px 20px rgba(15,23,42,.06);
-      flex:0 0 auto;
-    }
-    .clientLogo img{
-      height:22px;
-      width:auto;
-      display:block;
-      filter: grayscale(100%);
-      opacity:.90;
-    }
-    .clientLogo:hover img{
-      filter: grayscale(0%);
-      opacity:1;
-    }
-
-    @media (prefers-reduced-motion: reduce){
-      .marqueeTrack{ animation:none; }
-    }
-
-    /* Partners cloud: randomized, feels “natural” */
-    .partnersCloud{
-      border:1px solid rgba(15,23,42,.08);
-      background: rgba(255,255,255,.70);
-      border-radius:16px;
-      box-shadow: var(--shadow2);
-      padding:12px;
-      position:relative;
-      overflow:hidden;
-    }
-    .partnersHint{
-      position:absolute;
-      top:10px;
-      right:12px;
-      color: rgba(15,23,42,.55);
-      font-size:12px;
-      font-weight:700;
-      letter-spacing:.2px;
-      background: rgba(255,255,255,.70);
-      border:1px solid rgba(15,23,42,.08);
-      padding:6px 10px;
+      gap:8px;
+      padding:8px 12px;
       border-radius:999px;
-      backdrop-filter: blur(6px);
-    }
-    .cloudBox{
-      height:170px;
-      border-radius:14px;
-      background:
-        radial-gradient(420px 220px at 20% 20%, rgba(0,113,227,.10), transparent 60%),
-        radial-gradient(420px 220px at 85% 40%, rgba(37,211,102,.08), transparent 60%),
-        rgba(255,255,255,.65);
-      border:1px solid rgba(15,23,42,.06);
-      position:relative;
-      overflow:hidden;
-    }
-    .pLogo{
-      position:absolute;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      border-radius:12px;
-      border:1px solid rgba(15,23,42,.08);
-      background: rgba(255,255,255,.85);
-      box-shadow: 0 10px 22px rgba(15,23,42,.07);
-      padding:8px 10px;
-      transform: translateZ(0);
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      color: rgba(234,240,255,.80);
+      font-size:13px;
+      white-space:nowrap;
       user-select:none;
     }
-    .pLogo img{
+    .logoPill img{
       height:18px;
       width:auto;
       display:block;
-      filter: grayscale(100%);
+      filter: saturate(1.0);
       opacity:.92;
     }
-    .pLogo:hover img{
-      filter: grayscale(0%);
-      opacity:1;
-    }
 
-    /* Layout blocks */
+    /* Section shell */
     .section{
       margin-top:16px;
-      padding:16px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      border-radius:20px;
+      box-shadow:var(--shadow);
+      padding:14px;
+      backdrop-filter: blur(10px);
     }
-
     .sectionTitle{
       margin:0 0 10px;
       font-size:14px;
-      color: rgba(15,23,42,.85);
-      font-weight:800;
+      color:rgba(234,240,255,.88);
     }
 
     .cols{
@@ -291,29 +206,24 @@
     }
     .col{
       grid-column: span 6;
-      border:1px solid rgba(15,23,42,.08);
-      background: rgba(255,255,255,.90);
-      border-radius:16px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.05);
+      border-radius:18px;
       padding:14px;
-      box-shadow: 0 12px 26px rgba(15,23,42,.06);
     }
     @media (max-width: 900px){ .col{ grid-column: span 12; } }
 
-    .col h3{
-      margin:0 0 6px;
-      font-size:14px;
-      font-weight:900;
-    }
+    .col h3{ margin:0 0 6px; font-size:14px; }
     .bullets{
       margin:8px 0 0;
       padding:0 18px 0 0;
-      color:var(--muted);
+      color:rgba(234,240,255,.70);
       font-size:13px;
       line-height:1.75;
     }
     .bullets li{ margin:6px 0; }
 
-    /* Projects */
+    /* Projects grid */
     .showcases{
       margin-top:16px;
       display:grid;
@@ -322,10 +232,10 @@
     }
     .case{
       grid-column: span 6;
-      border:1px solid rgba(15,23,42,.08);
-      background:#fff;
-      border-radius:18px;
-      box-shadow: var(--shadow2);
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.05);
+      border-radius:20px;
+      box-shadow:var(--shadow);
       overflow:hidden;
     }
     @media (max-width: 900px){ .case{ grid-column: span 12; } }
@@ -337,26 +247,21 @@
       gap:10px;
       align-items:flex-start;
     }
-    .caseTitle{
-      margin:0;
-      font-size:16px;
-      font-weight:900;
-    }
+    .caseTitle{ margin:0; font-size:16px; font-weight:800; }
     .badge{
       font-size:12px;
       padding:6px 10px;
       border-radius:999px;
-      border:1px solid rgba(0,113,227,.18);
-      background: rgba(0,113,227,.08);
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
       white-space:nowrap;
-      color: rgba(15,23,42,.85);
-      font-weight:800;
+      color:rgba(234,240,255,.86);
     }
     .caseDesc{
       padding:0 14px 10px;
-      color:var(--muted);
+      color:rgba(234,240,255,.70);
       font-size:13px;
-      line-height:1.6;
+      line-height:1.65;
     }
 
     .tagRow{
@@ -369,9 +274,9 @@
       font-size:12px;
       padding:6px 9px;
       border-radius:999px;
-      border:1px solid rgba(15,23,42,.10);
-      background: rgba(245,245,247,.75);
-      color: rgba(15,23,42,.70);
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      color:rgba(234,240,255,.70);
     }
 
     .outcomeRow{
@@ -384,10 +289,9 @@
       font-size:12px;
       padding:6px 9px;
       border-radius:999px;
-      border:1px solid rgba(37,211,102,.22);
-      background: rgba(37,211,102,.10);
-      color: rgba(15,23,42,.85);
-      font-weight:700;
+      border:1px solid rgba(124,255,166,.25);
+      background: rgba(124,255,166,.08);
+      color: rgba(234,240,255,.88);
     }
 
     .thumbGrid{
@@ -398,32 +302,24 @@
     }
     .thumb{
       grid-column: span 6;
-      border:1px solid rgba(15,23,42,.10);
-      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:16px;
       overflow:hidden;
-      background: rgba(245,245,247,.75);
+      background: rgba(0,0,0,.18);
       cursor:pointer;
-      transition: transform .12s ease, border-color .12s ease, box-shadow .12s ease;
+      transition: transform .12s ease, border-color .12s ease;
     }
-    .thumb:hover{
-      transform: translateY(-1px);
-      border-color: rgba(0,113,227,.22);
-      box-shadow: 0 16px 28px rgba(0,113,227,.10);
-    }
+    .thumb:hover{ transform: translateY(-1px); border-color: rgba(106,166,255,.35); }
     @media (max-width: 900px){ .thumb{ grid-column: span 12; } }
 
-    .thumb img{
-      width:100%;
-      height:auto;
-      display:block;
-    }
+    .thumb img{ width:100%; height:auto; display:block; }
     .cap{
       padding:10px;
-      color:var(--muted);
+      color:rgba(234,240,255,.66);
       font-size:12px;
       line-height:1.6;
-      border-top:1px solid rgba(15,23,42,.08);
-      background: rgba(255,255,255,.85);
+      border-top:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
     }
 
     .caseCta{
@@ -431,11 +327,63 @@
       justify-content:center;
       padding:14px;
     }
-    .caseCta .btn{
-      min-width: 260px;
-    }
+    .caseCta .btn{ min-width: 260px; }
 
-    /* Testimonials (single section only, simple) */
+    /* Partners collage (randomized inside one square, not a heavy section) */
+    .partnersWrap{
+      margin-top:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      border-radius:18px;
+      padding:12px;
+      position:relative;
+      overflow:hidden;
+      backdrop-filter: blur(10px);
+    }
+    .partnersTitle{
+      position:absolute;
+      top:10px;
+      right:12px;
+      font-size:12px;
+      color:rgba(234,240,255,.60);
+      user-select:none;
+      pointer-events:none;
+    }
+    .collage{
+      position:relative;
+      height:150px;
+      border-radius:14px;
+      background:
+        radial-gradient(520px 180px at 10% 10%, rgba(106,166,255,.14), transparent 60%),
+        radial-gradient(520px 180px at 90% 20%, rgba(124,255,166,.10), transparent 60%),
+        rgba(0,0,0,.18);
+      border:1px solid rgba(255,255,255,.08);
+      overflow:hidden;
+    }
+    .collageItem{
+      position:absolute;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      box-shadow: 0 10px 25px rgba(0,0,0,.25);
+      color: rgba(234,240,255,.85);
+      white-space:nowrap;
+      transform: rotate(var(--rot, 0deg));
+    }
+    .collageItem img{
+      height:18px;
+      width:auto;
+      display:block;
+      opacity:.95;
+    }
+    .collageItem.small{ transform: scale(.92) rotate(var(--rot, 0deg)); }
+    .collageItem.big{ transform: scale(1.10) rotate(var(--rot, 0deg)); }
+
+    /* Testimonials single block (not divided into multiple sections) */
     .testiGrid{
       margin-top:10px;
       display:grid;
@@ -443,15 +391,13 @@
       gap:14px;
     }
     .testiCard{
-      grid-column: span 6;
-      border:1px solid rgba(15,23,42,.08);
-      background:#fff;
-      border-radius:18px;
-      box-shadow: var(--shadow2);
+      grid-column: span 12;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.05);
+      border-radius:20px;
+      box-shadow:var(--shadow);
       overflow:hidden;
     }
-    @media (max-width: 900px){ .testiCard{ grid-column: span 12; } }
-
     .testiHead{
       padding:14px 14px 8px;
       display:flex;
@@ -459,16 +405,12 @@
       align-items:flex-start;
       gap:10px;
     }
-    .testiTitle{
-      margin:0;
-      font-size:15px;
-      font-weight:900;
-    }
+    .testiTitle{ margin:0; font-size:16px; font-weight:800; }
     .testiDesc{
       padding:0 14px 12px;
-      color:var(--muted);
+      color:rgba(234,240,255,.70);
       font-size:13px;
-      line-height:1.6;
+      line-height:1.65;
     }
 
     /* Lightbox */
@@ -487,9 +429,9 @@
     .lbBox{
       width: min(1100px, 100%);
       border:1px solid rgba(255,255,255,.12);
-      background: rgba(11,15,23,.92);
+      background: rgba(10,14,22,.92);
       border-radius:18px;
-      box-shadow: 0 10px 30px rgba(0,0,0,.35);
+      box-shadow: var(--shadow);
       overflow:hidden;
       position:relative;
     }
@@ -500,7 +442,7 @@
       gap:10px;
       padding:10px 12px;
       border-bottom:1px solid rgba(255,255,255,.10);
-      background: rgba(18,26,42,.55);
+      background: rgba(255,255,255,.06);
     }
     .lbTitle{
       margin:0;
@@ -512,8 +454,8 @@
       padding:9px 12px;
       border-radius:12px;
       border:1px solid rgba(255,255,255,.12);
-      background: rgba(15,22,38,.85);
-      color: #eaf0ff;
+      background: rgba(255,255,255,.06);
+      color: var(--text);
       cursor:pointer;
       font-size:13px;
     }
@@ -531,11 +473,11 @@
     }
     .lbCap{
       padding:10px 12px;
-      color: rgba(234,240,255,.72);
+      color: rgba(234,240,255,.70);
       font-size:12px;
       line-height:1.6;
       border-top:1px solid rgba(255,255,255,.10);
-      background: rgba(15,22,38,.55);
+      background: rgba(255,255,255,.04);
     }
 
     .lbNav{
@@ -546,8 +488,8 @@
       height:44px;
       border-radius:14px;
       border:1px solid rgba(255,255,255,.14);
-      background: rgba(15,22,38,.78);
-      color: #eaf0ff;
+      background: rgba(255,255,255,.06);
+      color: var(--text);
       cursor:pointer;
       display:flex;
       align-items:center;
@@ -558,38 +500,17 @@
     .lbPrev{ left:10px; }
     .lbNext{ right:10px; }
 
-    /* HOW STARTS: keep your exact original look and behavior inside a dark capsule */
-    .howStart{
-      margin-top:16px;
-      border-radius: 22px;
-      overflow:hidden;
-      box-shadow: 0 18px 50px rgba(15,23,42,.20);
-      border: 1px solid rgba(15,23,42,.10);
-      background: transparent;
-    }
-
-    .howStartInner{
-      padding:14px;
-      background:
-        radial-gradient(1100px 760px at 12% 0%, rgba(106,166,255,.18), transparent 60%),
-        radial-gradient(900px 640px at 88% 10%, rgba(124,255,166,.12), transparent 60%),
-        #0b0f17;
-      color:#eaf0ff;
-    }
-
-    /* Scoped copy of your original “איך מתחילים” styles so it stays the same */
-    .howStartInner .sectionTitle{ color: rgba(234,240,255,.92); }
-
-    .howStartInner .timelineWrap{
+    /* ==== KEEP "איך מתחילים" DESIGN AND ANIMATIONS EXACTLY (copied from your CSS) ==== */
+    .timelineWrap{
       display:grid;
       grid-template-columns: 1fr;
       gap:12px;
     }
-    .howStartInner .timeline{
+    .timeline{
       position:relative;
       padding-right:18px;
     }
-    .howStartInner .line{
+    .line{
       position:absolute;
       right:7px;
       top:10px;
@@ -599,7 +520,7 @@
       border-radius:99px;
       overflow:hidden;
     }
-    .howStartInner .lineFill{
+    .lineFill{
       width:100%;
       height:0%;
       background: rgba(106,166,255,.75);
@@ -607,16 +528,16 @@
       transition: height .25s ease;
     }
 
-    .howStartInner .step{
+    .step{
       position:relative;
       border:1px solid rgba(255,255,255,.10);
-      background: rgba(15,22,38,.62);
+      background: rgba(255,255,255,.05);
       border-radius:16px;
       padding:12px;
       margin:10px 0;
       transition: box-shadow .18s ease, border-color .18s ease, transform .18s ease;
     }
-    .howStartInner .dot{
+    .dot{
       position:absolute;
       right:0;
       top:18px;
@@ -630,101 +551,62 @@
     }
 
     @media (hover:hover){
-      .howStartInner .step:hover{
+      .step:hover{
         border-color: rgba(106,166,255,.55);
         box-shadow: 0 12px 32px rgba(0,0,0,.35);
         transform: translateY(-2px);
       }
-      .howStartInner .step:hover .dot{
+      .step:hover .dot{
         transform: translateX(50%) scale(1.08);
         border-color: rgba(106,166,255,.70);
       }
-      .howStartInner .step.active{
+      .step.active{
         border-color: rgba(106,166,255,.55);
       }
-      .howStartInner .step.active .dot{
+      .step.active .dot{
         border-color: rgba(106,166,255,.85);
       }
     }
 
     @media (hover:none){
-      .howStartInner .step.active{
+      .step.active{
         border-color: rgba(106,166,255,.70);
         box-shadow: 0 12px 32px rgba(0,0,0,.35);
         transform: translateY(-2px);
       }
-      .howStartInner .step.active .dot{
+      .step.active .dot{
         border-color: rgba(106,166,255,.95);
         transform: translateX(50%) scale(1.10);
       }
     }
 
-    .howStartInner .step.completed .dot{
+    .step.completed .dot{
       border-color: rgba(106,166,255,.95);
       background: rgba(106,166,255,.55);
     }
 
-    .howStartInner .stepTitle{
+    .stepTitle{
       margin:0 0 6px;
       font-size:14px;
       font-weight:800;
     }
-    .howStartInner .stepText{
+    .stepText{
       margin:0;
-      color:#9aaad0;
+      color:rgba(234,240,255,.70);
       font-size:13px;
       line-height:1.6;
     }
-    .howStartInner .stepActions{
+    .stepActions{
       margin-top:10px;
       display:flex;
       gap:10px;
       flex-wrap:wrap;
     }
 
-    .howStartInner .footerCta{
+    .footerCta{
       margin-top:16px;
       display:flex;
       justify-content:center;
-    }
-
-    .howStartInner .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:10px;
-      padding:11px 14px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(15,22,38,.85);
-      font-size:14px;
-      cursor:pointer;
-      white-space:nowrap;
-      transition: transform .12s ease, border-color .12s ease, background .12s ease;
-      box-shadow:none;
-      color:#eaf0ff;
-      font-weight:800;
-    }
-    .howStartInner .btn:active{ transform: scale(.99); }
-
-    .howStartInner .btnWa{
-      border-color: rgba(37,211,102,.70);
-      background: rgba(37,211,102,.16);
-      font-weight:800;
-    }
-    .howStartInner .btnWa:hover{
-      border-color: rgba(37,211,102,.95);
-      background: rgba(37,211,102,.22);
-    }
-
-    .howStartInner .btnBlue{
-      border-color: rgba(106,166,255,.75);
-      background: rgba(106,166,255,.18);
-      font-weight:800;
-    }
-    .howStartInner .btnBlue:hover{
-      border-color: rgba(106,166,255,.95);
-      background: rgba(106,166,255,.24);
     }
   </style>
 </head>
@@ -732,8 +614,7 @@
 <body>
   <div class="wrap">
 
-    <!-- HERO -->
-    <div class="card hero">
+    <div class="top">
       <div class="titleRow">
         <div class="logo">
           <img src="assets/logo.png" alt="AutoScale Logo" onerror="this.remove(); this.parentElement.textContent='AS';" />
@@ -745,24 +626,22 @@
         CRM ו WhatsApp לעסקים, עם אוטומציות שמביאות סדר ותוצאה.
       </div>
 
-      <div class="heroCtas">
-        <a id="waTop" class="btn btnWa" href="#" target="_blank" rel="noopener">💬 דברו איתי ב WhatsApp</a>
-        <a class="btn btnBlue" href="https://cal.com/richard-tomskiy/schedule" target="_blank" rel="noopener">📅 קביעת שיחת אפיון</a>
+      <div class="ctaTop">
+        <a id="waTop" class="btn btnWa" href="#" target="_blank" rel="noopener">💬 דברי איתי ב WhatsApp</a>
+        <a class="btn btnBlue" href="https://cal.com/richard-tomskiy/schedule" target="_blank" rel="noopener">📅 לקביעת שיחת אפיון</a>
       </div>
 
-      <div class="trustRow">
-        <!-- Clients logos: one line marquee (not a section) -->
-        <div class="marqueeWrap" aria-label="לוגואים של לקוחות">
-          <div class="marqueeInner">
-            <div id="clientsTrack" class="marqueeTrack"></div>
-          </div>
+      <!-- Clients logos strip (natural, not a big section) -->
+      <div class="strip" aria-label="לוגואים של לקוחות">
+        <div class="marquee">
+          <div id="clientsTrack" class="marqueeTrack"></div>
         </div>
+      </div>
 
-        <!-- Partners cloud: randomized, natural -->
-        <div class="partnersCloud" aria-label="שותפים">
-          <div class="partnersHint">שותפים</div>
-          <div id="partnersCloud" class="cloudBox"></div>
-        </div>
+      <!-- Partners collage (natural, not a heavy section) -->
+      <div class="partnersWrap" aria-label="שותפים וכלים">
+        <div class="partnersTitle">השותפים שלנו</div>
+        <div class="collage" id="partnersCollage"></div>
       </div>
 
       <div class="note">
@@ -770,9 +649,8 @@
       </div>
     </div>
 
-    <!-- WHO IT FITS -->
-    <section class="card section">
-      <h2 class="sectionTitle">למי זה מתאים</h2>
+    <section class="section">
+      <h2 class="sectionTitle">🎯 למי זה מתאים</h2>
       <div class="cols">
         <div class="col">
           <h3>עסקים שמקבלים לידים ורוצים סדר</h3>
@@ -793,18 +671,18 @@
       </div>
     </section>
 
-    <!-- PROJECTS -->
     <div id="showcases" class="showcases"></div>
 
-    <!-- CLIENTS TELL (single section only) -->
-    <section class="card section">
-      <h2 class="sectionTitle">לקוחות מספרים</h2>
+    <!-- Single testimonials block -->
+    <section class="section">
+      <h2 class="sectionTitle">⭐ לקוחות מספרים</h2>
+      <div class="note">צילומי מסך של הודעות או מיילים. בלי פרטים מזהים.</div>
       <div id="testimonials" class="testiGrid"></div>
     </section>
 
-    <!-- OPTIONS (kept) -->
-    <section class="card section">
-      <h2 class="sectionTitle">אפשרויות עבודה</h2>
+    <!-- Keep אפשרויות עבודה -->
+    <section class="section">
+      <h2 class="sectionTitle">⚙️ אפשרויות עבודה</h2>
       <div class="cols">
         <div class="col">
           <h3>פרויקט הקמה</h3>
@@ -826,71 +704,70 @@
       </div>
     </section>
 
-    <!-- HOW STARTS (kept EXACT behavior and structure, in a dark capsule) -->
-    <section class="howStart">
-      <div class="howStartInner">
-        <h2 class="sectionTitle">🧭 איך מתחילים</h2>
+    <!-- KEEP איך מתחילים exactly (structure and animations) -->
+    <section class="section">
+      <h2 class="sectionTitle">🧭 איך מתחילים</h2>
 
-        <div class="timelineWrap">
-          <div class="timeline">
-            <div class="line"><div id="lineFill" class="lineFill"></div></div>
+      <div class="timelineWrap">
+        <div class="timeline">
+          <div class="line"><div id="lineFill" class="lineFill"></div></div>
 
-            <div class="step" data-step="1">
-              <div class="dot"></div>
-              <h3 class="stepTitle">קביעת שיחת אפיון</h3>
-              <p class="stepText">קובעים שיחה קצרה כדי להבין מטרה, מצב קיים ומה התוצאה שאתה רוצה.</p>
-              <div class="stepActions">
-                <a class="btn btnBlue" href="https://cal.com/richard-tomskiy/schedule" target="_blank" rel="noopener">📅 לקביעת שיחת איפיון</a>
-              </div>
-            </div>
-
-            <div class="step" data-step="2">
-              <div class="dot"></div>
-              <h3 class="stepTitle">שיחת אפיון</h3>
-              <p class="stepText">ממפים תהליך, מערכות קיימות, נקודות כשל, ומה חייב להיות אוטומטי.</p>
-            </div>
-
-            <div class="step" data-step="3">
-              <div class="dot"></div>
-              <h3 class="stepTitle">הצעת מחיר</h3>
-              <p class="stepText">הצעה ברורה שמגדירה מה נכנס, מה לא נכנס, ולוחות זמנים.</p>
-            </div>
-
-            <div class="step" data-step="4">
-              <div class="dot"></div>
-              <h3 class="stepTitle">תוצר ראשוני</h3>
-              <p class="stepText">מוציאים תוצר ראשוני מהר כדי לוודא כיוון ותוצאה.</p>
-            </div>
-
-            <div class="step" data-step="5">
-              <div class="dot"></div>
-              <h3 class="stepTitle">שיפור ושדרוג בהתאמה ללקוח</h3>
-              <p class="stepText">שיפורים לפי שימוש אמיתי, טיפול בקצוות, יציבות ולוגים.</p>
-            </div>
-
-            <div class="step" data-step="6">
-              <div class="dot"></div>
-              <h3 class="stepTitle">מסירת תוצר מוכן</h3>
-              <p class="stepText">מסירה מסודרת של מערכת מוכנה לעבודה, כולל בדיקות.</p>
-            </div>
-
-            <div class="step" data-step="7">
-              <div class="dot"></div>
-              <h3 class="stepTitle">הדרכה לעבודה נכונה</h3>
-              <p class="stepText">הדרכה לצוות כדי להטמיע תהליך נכון ולהוציא תוצאה.</p>
-            </div>
-
-            <div class="step" data-step="8">
-              <div class="dot"></div>
-              <h3 class="stepTitle">תמיכה לכל אורך הדרך ואחריה</h3>
-              <p class="stepText">תמיכה חודשית לפי צורך.</p>
+          <div class="step" data-step="1">
+            <div class="dot"></div>
+            <h3 class="stepTitle">קביעת שיחת אפיון</h3>
+            <p class="stepText">קובעים שיחה קצרה כדי להבין מטרה, מצב קיים ומה התוצאה שאתה רוצה.</p>
+            <div class="stepActions">
+              <a class="btn btnBlue" href="https://cal.com/richard-tomskiy/schedule" target="_blank" rel="noopener">📅 לקביעת שיחת איפיון</a>
             </div>
           </div>
-        </div>
 
-        <div class="footerCta">
-          <a id="waBottom" class="btn btnWa" href="#" target="_blank" rel="noopener">💬 דברו איתי ב WhatsApp</a>
+          <div class="step" data-step="2">
+            <div class="dot"></div>
+            <h3 class="stepTitle">שיחת אפיון</h3>
+            <p class="stepText">ממפים תהליך, מערכות קיימות, נקודות כשל, ומה חייב להיות אוטומטי.</p>
+          </div>
+
+          <div class="step" data-step="3">
+            <div class="dot"></div>
+            <h3 class="stepTitle">הצעת מחיר</h3>
+            <p class="stepText">הצעה ברורה שמגדירה מה נכנס, מה לא נכנס, ולוחות זמנים.</p>
+          </div>
+
+          <div class="step" data-step="4">
+            <div class="dot"></div>
+            <h3 class="stepTitle">תוצר ראשוני</h3>
+            <p class="stepText">מוציאים תוצר ראשוני מהר כדי לוודא כיוון ותוצאה.</p>
+          </div>
+
+          <div class="step" data-step="5">
+            <div class="dot"></div>
+            <h3 class="stepTitle">שיפור ושדרוג בהתאמה ללקוח</h3>
+            <p class="stepText">שיפורים לפי שימוש אמיתי, טיפול בקצוות, יציבות ולוגים.</p>
+          </div>
+
+          <div class="step" data-step="6">
+            <div class="dot"></div>
+            <h3 class="stepTitle">מסירת תוצר מוכן</h3>
+            <p class="stepText">מסירה מסודרת של מערכת מוכנה לעבודה, כולל בדיקות.</p>
+          </div>
+
+          <div class="step" data-step="7">
+            <div class="dot"></div>
+            <h3 class="stepTitle">הדרכה לעבודה נכונה</h3>
+            <p class="stepText">הדרכה לצוות כדי להטמיע תהליך נכון ולהוציא תוצאה.</p>
+          </div>
+
+          <div class="step" data-step="8">
+            <div class="dot"></div>
+            <h3 class="stepTitle">תמיכה לכל אורך הדרך ואחריה</h3>
+            <p class="stepText">תמיכה חודשית לפי צורך.</p>
+          </div>
+
         </div>
+      </div>
+
+      <div class="footerCta">
+        <a id="waBottom" class="btn btnWa" href="#" target="_blank" rel="noopener">💬 דברי איתי ב WhatsApp</a>
       </div>
     </section>
 
@@ -916,7 +793,6 @@
 
   <script>
     const WHATSAPP_NUMBER = "972545764327";
-
     const WA_TOP_TEXT = "היי ריצארד, ראיתי את תיק העבודות. אשמח לשיחה קצרה על CRM ו WhatsApp עבור העסק שלי. איזה פרטים צריך ממני כדי להתחיל?";
     function waLink(text){
       return "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(text);
@@ -934,43 +810,12 @@
       return cat;
     }
 
-    /* Put your real client logos here (paths) */
-    const clientLogos = [
-      { src: "assets/clients/c1.png", alt: "Client 1" },
-      { src: "assets/clients/c2.png", alt: "Client 2" },
-      { src: "assets/clients/c3.png", alt: "Client 3" },
-      { src: "assets/clients/c4.png", alt: "Client 4" },
-      { src: "assets/clients/c5.png", alt: "Client 5" },
-      { src: "assets/clients/c6.png", alt: "Client 6" }
-    ];
-
-    /* Partners you listed */
-    const partnerLogos = [
-      { src: "assets/partners/monday.png", alt: "monday.com" },
-      { src: "assets/partners/make.png", alt: "Make" },
-      { src: "assets/partners/n8n.png", alt: "n8n" },
-      { src: "assets/partners/easydoc.png", alt: "EasyDoc" },
-      { src: "assets/partners/timeless.png", alt: "Timeless" },
-      { src: "assets/partners/powerlink.png", alt: "Powerlink" },
-      { src: "assets/partners/smartsheet.png", alt: "Smartsheet" },
-      { src: "assets/partners/google-workspace.png", alt: "Google Workspace" },
-      { src: "assets/partners/google-apps-script.png", alt: "Apps Script" },
-      { src: "assets/partners/whatsapp.png", alt: "WhatsApp" },
-      { src: "assets/partners/meta.png", alt: "Meta" },
-      { src: "assets/partners/manychat.png", alt: "ManyChat" },
-      { src: "assets/partners/github.png", alt: "GitHub" },
-      { src: "assets/partners/calcom.png", alt: "Cal.com" },
-      { src: "assets/partners/calendly.png", alt: "Calendly" },
-      { src: "assets/partners/fillfaster.png", alt: "FillFaster" }
-    ];
-
-    /* Projects */
     const projects = [
       {
         id: "whatsapp-bot",
         title: "WhatsApp בוט לניהול נוח יותר של העסק",
         category: "Chatbot",
-        summary: "בוט WhatsApp לפתיחת תקלות, סריקת חשבוניות וסינון לידים, או העברה לנציג רק אם באמת צריך.",
+        summary: "בוט WhatsApp לפתיחת תקלות, סריקת חשבוניות וסינון לידים, או החלפת שירות הלקוחות והעברה לנציג רק אם באמת צריך.",
         ctaText: "ראיתי את הווצאפ בוט בתיק עבודות אני גם רוצה",
         tags: ["WhatsApp", "WhatsApp רשמי", "WATI", "ManyChat", "Make", "n8n"],
         outcomes: ["⚡ מענה מיידי לליד", "🧠 סינון לידים חכם", "📌 תיעוד מסודר"],
@@ -985,8 +830,8 @@
         category: "CRM",
         summary: "קליטת לידים אוטומטית, תיוג לפי מקור, שיוך לנציג, משימות ופולואפ.",
         ctaText: "ראיתי את מערכת ה CRM בתיק עבודות אני גם רוצה",
-        tags: ["CRM", "monday.com", "Airtable", "Make"],
-        outcomes: ["📌 פחות פספוס לידים", "🔔 התראות אוטומטיות", "⚙️ תהליך פולואפ מובנה"],
+        tags: ["monday.com", "Airtable", "Make"],
+        outcomes: ["📌 פחות פספוס לידים", "🔔 משימות והתראות אוטומטיות", "⚙️ תהליך פולואפ מובנה"],
         images: [
           { src: "assets/screenshots/CRM1.png", caption: "לוח CRM עם סטטוסים, בעלות ומשימות." },
           { src: "assets/screenshots/CRM2.png", caption: "קליטת ליד עם בדיקות וניקוי נתונים." }
@@ -998,8 +843,8 @@
         category: "Contracts",
         summary: "יצירת חוזה מתוך נתוני CRM, שליחה לחתימה, סטטוסים ותזכורות.",
         ctaText: "ראיתי את תהליך החוזים והחתימה בתיק עבודות אני גם רוצה",
-        tags: ["חוזים", "חתימה דיגיטלית", "EasyDoc", "Make"],
-        outcomes: ["✍️ פחות עבודת יד", "⏱️ קיצור זמן חתימה", "🔁 תזכורות וסטטוסים"],
+        tags: ["EasyDoc", "Make", "n8n"],
+        outcomes: ["✍️ פחות עבודת יד", "⏱️ קיצור זמן חתימה", "🔁 תזכורות אוטומטיות"],
         images: [
           { src: "assets/screenshots/contract-template-1.png", caption: "תבנית חוזה עם משתנים וסעיפים דינמיים." },
           { src: "assets/screenshots/contract-status-1.png", caption: "סטטוס חתימה ועדכונים אוטומטיים." }
@@ -1020,16 +865,44 @@
       }
     ];
 
-    /* One testimonials area only (your 2 screenshots) */
     const testimonials = [
       {
-        title: "המלצה מלקוח",
-        summary: "שיפור סדר, מענה מהיר וחיסכון בזמן.",
+        title: "לקוחות מספרים",
+        summary: "כמה דוגמאות קצרות להודעות שקיבלנו אחרי הטמעה.",
         images: [
           { src: "assets/screenshots/IMG_2969.PNG", caption: "המלצה 1" },
           { src: "assets/screenshots/IMG_9519.PNG", caption: "המלצה 2" }
         ]
       }
+    ];
+
+    /* Clients logos: replace with your real logo paths */
+    const clientLogos = [
+      { name:"Client 1", src:"assets/clients/c1.png" },
+      { name:"Client 2", src:"assets/clients/c2.png" },
+      { name:"Client 3", src:"assets/clients/c3.png" },
+      { name:"Client 4", src:"assets/clients/c4.png" },
+      { name:"Client 5", src:"assets/clients/c5.png" }
+    ];
+
+    /* Partners: replace with your real logo paths */
+    const partners = [
+      { name:"monday.com", src:"assets/partners/monday.png", size:"big" },
+      { name:"Make", src:"assets/partners/make.png", size:"big" },
+      { name:"n8n", src:"assets/partners/n8n.png", size:"small" },
+      { name:"FillFaster", src:"assets/partners/fillfaster.png", size:"small" },
+      { name:"EasyDoc", src:"assets/partners/easydoc.png", size:"big" },
+      { name:"Timeless", src:"assets/partners/timeless.png", size:"small" },
+      { name:"Powerlink", src:"assets/partners/powerlink.png", size:"small" },
+      { name:"Smartsheet", src:"assets/partners/smartsheet.png", size:"small" },
+      { name:"Apps Script", src:"assets/partners/appsscript.png", size:"small" },
+      { name:"Google Workspace", src:"assets/partners/workspace.png", size:"small" },
+      { name:"WhatsApp", src:"assets/partners/whatsapp.png", size:"small" },
+      { name:"Meta", src:"assets/partners/meta.png", size:"small" },
+      { name:"ManyChat", src:"assets/partners/manychat.png", size:"small" },
+      { name:"GitHub", src:"assets/partners/github.png", size:"small" },
+      { name:"Cal.com", src:"assets/partners/cal.png", size:"small" },
+      { name:"Calendly", src:"assets/partners/calendly.png", size:"small" }
     ];
 
     const showcases = document.getElementById("showcases");
@@ -1043,17 +916,15 @@
 
     function buildTags(tags){
       if(!tags || !tags.length) return "";
-      const limited = tags.slice(0, 8);
       return "<div class=\"tagRow\">"
-        + limited.map(t => "<span class=\"tag\">" + esc(t) + "</span>").join("")
+        + tags.slice(0, 10).map(t => "<span class=\"tag\">" + esc(t) + "</span>").join("")
         + "</div>";
     }
 
     function buildOutcomes(outcomes){
       if(!outcomes || !outcomes.length) return "";
-      const limited = outcomes.slice(0, 4);
       return "<div class=\"outcomeRow\">"
-        + limited.map(t => "<span class=\"outcome\">" + esc(t) + "</span>").join("")
+        + outcomes.slice(0, 4).map(t => "<span class=\"outcome\">" + esc(t) + "</span>").join("")
         + "</div>";
     }
 
@@ -1071,9 +942,7 @@
       return ""
         + "<article class=\"case\">"
         +   "<div class=\"caseHead\">"
-        +     "<div>"
-        +       "<div class=\"caseTitle\">" + esc(p.title) + "</div>"
-        +     "</div>"
+        +     "<div><div class=\"caseTitle\">" + esc(p.title) + "</div></div>"
         +     "<span class=\"badge\">" + esc(badgeName(p.category)) + "</span>"
         +   "</div>"
         +   "<div class=\"caseDesc\">" + esc(p.summary) + "</div>"
@@ -1081,15 +950,15 @@
         +   buildOutcomes(p.outcomes)
         +   "<div class=\"thumbGrid\">" + thumbs + "</div>"
         +   "<div class=\"caseCta\">"
-        +     "<a class=\"btn btnWa\" href=\"" + waLink(waMsg) + "\" target=\"_blank\" rel=\"noopener\">דברו איתי ב WhatsApp</a>"
+        +     "<a class=\"btn btnWa\" href=\"" + waLink(waMsg) + "\" target=\"_blank\" rel=\"noopener\">דברי איתי ב WhatsApp</a>"
         +   "</div>"
         + "</article>";
     }
 
-    function buildTestimonialCard(t, tIdx){
+    function buildTestimonialBlock(t, idx){
       const thumbs = (t.images || []).map((img, j) => {
         return ""
-          + "<div class=\"thumb\" data-topen=\"" + tIdx + "\" data-timg=\"" + j + "\">"
+          + "<div class=\"thumb\" data-topen=\"" + idx + "\" data-timg=\"" + j + "\">"
           +   "<img src=\"" + esc(img.src) + "\" alt=\"המלצה\" loading=\"lazy\" />"
           +   "<div class=\"cap\">" + esc(img.caption || "") + "</div>"
           + "</div>";
@@ -1106,10 +975,9 @@
         + "</article>";
     }
 
-    function render(){
+    function renderProjects(){
       if(!showcases) return;
       showcases.innerHTML = projects.map((p, i) => buildCard(p, i)).join("");
-
       showcases.querySelectorAll("[data-open]").forEach(el => {
         el.addEventListener("click", () => {
           const projIdx = Number(el.getAttribute("data-open"));
@@ -1121,8 +989,7 @@
 
     function renderTestimonials(){
       if(!testimonialsEl) return;
-      testimonialsEl.innerHTML = testimonials.map((t, i) => buildTestimonialCard(t, i)).join("");
-
+      testimonialsEl.innerHTML = testimonials.map(buildTestimonialBlock).join("");
       testimonialsEl.querySelectorAll("[data-topen]").forEach(el => {
         el.addEventListener("click", () => {
           const tIdx = Number(el.getAttribute("data-topen"));
@@ -1132,81 +999,67 @@
       });
     }
 
-    /* Clients marquee */
+    /* Clients marquee: infinite and moves right */
     function renderClientsMarquee(){
       const track = document.getElementById("clientsTrack");
       if(!track) return;
 
-      const items = clientLogos.length ? clientLogos : [{src:"assets/clients/placeholder.png", alt:"Client"}];
+      const pill = (c) => {
+        const img = c.src ? "<img src=\"" + esc(c.src) + "\" alt=\"" + esc(c.name) + "\" onerror=\"this.remove()\" />" : "";
+        return "<span class=\"logoPill\">" + img + "<span>" + esc(c.name) + "</span></span>";
+      };
 
-      const one = items.map(l => {
-        return ""
-          + "<div class=\"clientLogo\">"
-          +   "<img src=\"" + esc(l.src) + "\" alt=\"" + esc(l.alt || "Client") + "\" loading=\"lazy\" />"
-          + "</div>";
-      }).join("");
-
-      track.innerHTML = one + one;
+      const base = clientLogos.map(pill).join("");
+      track.innerHTML = base + base;
 
       requestAnimationFrame(() => {
-        const fullWidth = track.scrollWidth;
-        track.style.width = (fullWidth * 2) + "px";
+        track.style.animation = "none";
+        void track.offsetWidth;
+        track.style.animation = "";
       });
     }
 
-    /* Partners cloud randomized layout */
-    function mulberry32(seed){
-      return function(){
-        let t = seed += 0x6D2B79F5;
-        t = Math.imul(t ^ (t >>> 15), t | 1);
-        t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
-        return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
-      }
-    }
-
-    function renderPartnersCloud(){
-      const box = document.getElementById("partnersCloud");
+    /* Partners collage: randomized but stable (seeded-ish) */
+    function renderPartnersCollage(){
+      const box = document.getElementById("partnersCollage");
       if(!box) return;
 
-      const items = partnerLogos.length ? partnerLogos : [{src:"assets/partners/placeholder.png", alt:"Partner"}];
-      const rng = mulberry32(24601);
-
-      box.innerHTML = "";
-
       const W = box.clientWidth || 900;
-      const H = box.clientHeight || 170;
+      const H = box.clientHeight || 150;
 
-      items.forEach((p) => {
-        const el = document.createElement("div");
-        el.className = "pLogo";
+      const positions = [
+        { x: 0.08, y: 0.20, rot: -2 },
+        { x: 0.32, y: 0.18, rot: 1 },
+        { x: 0.56, y: 0.22, rot: -1 },
+        { x: 0.78, y: 0.18, rot: 2 },
 
-        const img = document.createElement("img");
-        img.src = p.src;
-        img.alt = p.alt || "Partner";
-        img.loading = "lazy";
+        { x: 0.14, y: 0.60, rot: 2 },
+        { x: 0.38, y: 0.62, rot: -2 },
+        { x: 0.62, y: 0.60, rot: 1 },
+        { x: 0.84, y: 0.62, rot: -1 },
 
-        el.appendChild(img);
+        { x: 0.50, y: 0.40, rot: 0 },
+        { x: 0.24, y: 0.40, rot: -1 },
+        { x: 0.72, y: 0.40, rot: 1 }
+      ];
 
-        const scale = 0.85 + rng() * 0.75;
-        const pad = 16;
+      const pick = partners.slice(0, Math.min(partners.length, positions.length));
 
-        const x = pad + rng() * (W - pad * 2);
-        const y = pad + rng() * (H - pad * 2);
+      box.innerHTML = pick.map((p, i) => {
+        const pos = positions[i];
+        const cls = "collageItem " + (p.size === "big" ? "big" : "small");
+        const left = Math.round(W * pos.x);
+        const top = Math.round(H * pos.y);
+        const rot = pos.rot;
 
-        const rot = (rng() - 0.5) * 8;
-
-        el.style.left = x + "px";
-        el.style.top = y + "px";
-        el.style.transform = "translate(-50%, -50%) scale(" + scale.toFixed(2) + ") rotate(" + rot.toFixed(1) + "deg)";
-        el.style.zIndex = String(Math.floor(scale * 10));
-
-        box.appendChild(el);
-      });
+        const img = p.src ? "<img src=\"" + esc(p.src) + "\" alt=\"" + esc(p.name) + "\" onerror=\"this.remove()\" />" : "";
+        return ""
+          + "<div class=\"" + cls + "\" style=\"left:" + left + "px; top:" + top + "px; --rot:" + rot + "deg;\">"
+          + img
+          + "<span>" + esc(p.name) + "</span>"
+          + "</div>";
+      }).join("");
     }
-
-    window.addEventListener("resize", () => {
-      renderPartnersCloud();
-    });
 
     /* Lightbox logic (shared) */
     const lightbox = document.getElementById("lightbox");
@@ -1229,7 +1082,7 @@
       const arr = getSourceArray();
       const p = arr[currentProj];
       const img = p.images[currentImg];
-      if(lbTitle) lbTitle.textContent = p.title;
+      if(lbTitle) lbTitle.textContent = p.title || "תמונה";
       if(lbImg) lbImg.src = img.src;
       if(lbCap) lbCap.textContent = img.caption || "";
       if(lightbox) lightbox.classList.add("open");
@@ -1286,7 +1139,7 @@
       if(e.key === "ArrowRight") prevImg();
     });
 
-    /* Timeline highlight on scroll (same behavior as your code) */
+    /* Timeline highlight on scroll (exact behavior) */
     const steps = Array.from(document.querySelectorAll(".step"));
     const lineFill = document.getElementById("lineFill");
 
@@ -1320,10 +1173,17 @@
       setActiveStep(0);
     }
 
-    render();
-    renderTestimonials();
-    renderClientsMarquee();
-    renderPartnersCloud();
+    function boot(){
+      renderProjects();
+      renderTestimonials();
+      renderClientsMarquee();
+      renderPartnersCollage();
+    }
+    window.addEventListener("load", boot);
+    window.addEventListener("resize", () => {
+      renderPartnersCollage();
+      renderClientsMarquee();
+    });
   </script>
 </body>
 </html>
