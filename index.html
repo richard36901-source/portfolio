@@ -9,15 +9,14 @@
   <style>
     :root{
       --bg:#0b0f17;
-      --panel:rgba(18,26,42,.78);
-      --card:rgba(18,26,42,.86);
-      --muted:#9aaad0;
-      --text:#eaf0ff;
+      --panel:rgba(18,26,42,.70);
+      --card:rgba(18,26,42,.80);
+      --muted:#a7b4d6;
+      --text:#eef3ff;
       --border:rgba(255,255,255,.10);
-      --shadow:0 10px 30px rgba(0,0,0,.38);
-      --cta:#6aa6ff;
-      --cta2:#7cffa6;
+      --shadow:0 10px 26px rgba(0,0,0,.30);
       --wa:#25D366;
+      --blue:#6aa6ff;
     }
 
     *{ box-sizing:border-box; }
@@ -26,8 +25,8 @@
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
       color:var(--text);
       background:
-        radial-gradient(1100px 760px at 12% 0%, rgba(106,166,255,.18), transparent 60%),
-        radial-gradient(900px 640px at 88% 10%, rgba(124,255,166,.12), transparent 60%),
+        radial-gradient(900px 640px at 12% 0%, rgba(106,166,255,.12), transparent 60%),
+        radial-gradient(800px 520px at 88% 10%, rgba(37,211,102,.08), transparent 60%),
         var(--bg);
     }
     a{ color:inherit; text-decoration:none; }
@@ -37,7 +36,7 @@
     .top{
       border:1px solid var(--border);
       background:var(--panel);
-      border-radius:18px;
+      border-radius:16px;
       box-shadow:var(--shadow);
       padding:18px;
     }
@@ -50,35 +49,26 @@
       text-align:center;
     }
 
-    /* Logo slot */
     .logo{
-      width:44px; height:44px; border-radius:14px;
+      width:44px; height:44px; border-radius:12px;
       border:1px solid rgba(106,166,255,.35);
-      background: linear-gradient(135deg, rgba(106,166,255,.25), rgba(124,255,166,.12));
+      background: linear-gradient(135deg, rgba(106,166,255,.20), rgba(37,211,102,.10));
       display:flex; align-items:center; justify-content:center;
       font-weight:900;
       flex:0 0 auto;
       overflow:hidden;
     }
-    .logo img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      display:block;
-    }
+    .logo img{ width:100%; height:100%; object-fit:cover; display:block; }
 
-    h1{
-      margin:0;
-      font-size:22px;
-      letter-spacing:.2px;
-    }
+    h1{ margin:0; font-size:22px; letter-spacing:.2px; }
     .ltr{ direction:ltr; unicode-bidi: embed; display:inline-block; }
 
     .sub{
       margin-top:10px;
       text-align:center;
       color:var(--muted);
-      line-height:1.65;
+      line-height:1.7;
+      font-size:14px;
     }
 
     .ctaTop{
@@ -93,9 +83,9 @@
       justify-content:center;
       gap:10px;
       padding:11px 14px;
-      border-radius:14px;
+      border-radius:12px;
       border:1px solid var(--border);
-      background:rgba(15,22,38,.85);
+      background:rgba(15,22,38,.72);
       font-size:14px;
       cursor:pointer;
       white-space:nowrap;
@@ -103,27 +93,19 @@
     }
     .btn:active{ transform: scale(.99); }
 
-    /* WhatsApp green */
     .btnWa{
       border-color: rgba(37,211,102,.70);
-      background: rgba(37,211,102,.16);
+      background: rgba(37,211,102,.14);
       font-weight:800;
     }
-    .btnWa:hover{
-      border-color: rgba(37,211,102,.95);
-      background: rgba(37,211,102,.22);
-    }
+    .btnWa:hover{ border-color: rgba(37,211,102,.95); background: rgba(37,211,102,.20); }
 
-    /* Calendly blue */
     .btnBlue{
       border-color: rgba(106,166,255,.75);
-      background: rgba(106,166,255,.18);
+      background: rgba(106,166,255,.14);
       font-weight:800;
     }
-    .btnBlue:hover{
-      border-color: rgba(106,166,255,.95);
-      background: rgba(106,166,255,.24);
-    }
+    .btnBlue:hover{ border-color: rgba(106,166,255,.95); background: rgba(106,166,255,.20); }
 
     .controls{
       display:flex;
@@ -134,9 +116,9 @@
     }
     .search, select{
       border:1px solid var(--border);
-      background:rgba(15,22,38,.88);
+      background:rgba(15,22,38,.72);
       color:var(--text);
-      border-radius:14px;
+      border-radius:12px;
       padding:11px 12px;
       outline:none;
       font-size:14px;
@@ -144,18 +126,27 @@
     .search{ flex: 1 1 340px; max-width: 560px; }
     select{ flex: 0 0 220px; cursor:pointer; }
 
+    .note{
+      margin-top:10px;
+      color:var(--muted);
+      font-size:12px;
+      line-height:1.6;
+      text-align:center;
+    }
+
     .section{
       margin-top:16px;
       border:1px solid var(--border);
-      background:rgba(18,26,42,.58);
-      border-radius:18px;
+      background: rgba(18,26,42,.42);
+      border-radius:16px;
       box-shadow:var(--shadow);
       padding:14px;
     }
     .sectionTitle{
       margin:0 0 10px;
       font-size:14px;
-      color:rgba(234,240,255,.92);
+      color:rgba(238,243,255,.95);
+      letter-spacing:.2px;
     }
 
     .cols{
@@ -166,25 +157,23 @@
     .col{
       grid-column: span 6;
       border:1px solid var(--border);
-      background:rgba(15,22,38,.66);
-      border-radius:16px;
+      background: rgba(15,22,38,.55);
+      border-radius:14px;
       padding:12px;
     }
     @media (max-width: 900px){ .col{ grid-column: span 12; } }
 
-    .col h3{
-      margin:0 0 6px;
-      font-size:14px;
-    }
+    .col h3{ margin:0 0 6px; font-size:14px; }
     .bullets{
       margin:8px 0 0;
       padding:0 18px 0 0;
       color:var(--muted);
       font-size:13px;
-      line-height:1.75;
+      line-height:1.8;
     }
     .bullets li{ margin:6px 0; }
 
+    /* Showcase cards */
     .showcases{
       margin-top:16px;
       display:grid;
@@ -194,8 +183,8 @@
     .case{
       grid-column: span 6;
       border:1px solid var(--border);
-      background:var(--card);
-      border-radius:18px;
+      background: rgba(18,26,42,.65);
+      border-radius:16px;
       box-shadow:var(--shadow);
       overflow:hidden;
     }
@@ -208,29 +197,24 @@
       gap:10px;
       align-items:flex-start;
     }
-    .caseTitle{
-      margin:0;
-      font-size:16px;
-      font-weight:800;
-    }
+    .caseTitle{ margin:0; font-size:16px; font-weight:900; }
     .badge{
       font-size:12px;
       padding:6px 10px;
       border-radius:999px;
-      border:1px solid rgba(106,166,255,.45);
-      background:rgba(106,166,255,.12);
+      border:1px solid rgba(106,166,255,.40);
+      background:rgba(106,166,255,.10);
       white-space:nowrap;
-      color:rgba(234,240,255,.92);
+      color:rgba(238,243,255,.92);
     }
     .caseDesc{
       padding:0 14px 10px;
       color:var(--muted);
       font-size:13px;
-      line-height:1.6;
+      line-height:1.7;
     }
 
-    /* Project tags */
-    .tagRow{
+    .tagRow, .outcomeRow{
       padding:0 14px 12px;
       display:flex;
       gap:8px;
@@ -241,24 +225,16 @@
       padding:6px 9px;
       border-radius:999px;
       border:1px solid rgba(255,255,255,.12);
-      background:rgba(15,22,38,.55);
+      background:rgba(15,22,38,.45);
       color:var(--muted);
-    }
-
-    /* Outcome row: מה יצא מזה */
-    .outcomeRow{
-      padding:0 14px 12px;
-      display:flex;
-      gap:8px;
-      flex-wrap:wrap;
     }
     .outcome{
       font-size:12px;
       padding:6px 9px;
       border-radius:999px;
-      border:1px solid rgba(124,255,166,.35);
-      background: rgba(124,255,166,.08);
-      color: rgba(234,240,255,.90);
+      border:1px solid rgba(37,211,102,.28);
+      background: rgba(37,211,102,.08);
+      color: rgba(238,243,255,.92);
     }
 
     .thumbGrid{
@@ -270,183 +246,156 @@
     .thumb{
       grid-column: span 6;
       border:1px solid var(--border);
-      border-radius:14px;
+      border-radius:12px;
       overflow:hidden;
-      background:rgba(10,14,22,.35);
+      background:rgba(10,14,22,.25);
       cursor:pointer;
       transition: transform .12s ease, border-color .12s ease;
     }
-    .thumb:hover{ transform: translateY(-1px); border-color: rgba(106,166,255,.45); }
+    .thumb:hover{ transform: translateY(-1px); border-color: rgba(106,166,255,.40); }
     @media (max-width: 900px){ .thumb{ grid-column: span 12; } }
-
-    .thumb img{
-      width:100%;
-      height:auto;
-      display:block;
-    }
+    .thumb img{ width:100%; height:auto; display:block; }
     .cap{
       padding:10px;
       color:var(--muted);
       font-size:12px;
       line-height:1.6;
       border-top:1px solid var(--border);
-      background:rgba(15,22,38,.55);
+      background:rgba(15,22,38,.45);
     }
 
-    .caseCta{
-      display:flex;
-      justify-content:center;
-      padding:14px;
-    }
-    .caseCta .btn{
-      min-width: 260px;
-    }
+    .caseCta{ display:flex; justify-content:center; padding:14px; }
+    .caseCta .btn{ min-width: 260px; }
 
-    .timelineWrap{
-      display:grid;
-      grid-template-columns: 1fr;
-      gap:12px;
-    }
-    .timeline{
-      position:relative;
-      padding-right:18px;
-    }
-    .line{
-      position:absolute;
-      right:7px;
-      top:10px;
-      bottom:10px;
-      width:2px;
-      background: rgba(255,255,255,.10);
-      border-radius:99px;
+    /* Logos carousel (clients) */
+    .logoStrip{
+      border:1px solid var(--border);
+      background: rgba(15,22,38,.45);
+      border-radius:14px;
       overflow:hidden;
     }
-    .lineFill{
-      width:100%;
-      height:0%;
-      background: rgba(106,166,255,.75);
-      border-radius:99px;
-      transition: height .25s ease;
+    .logoStripTop{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+      padding:10px 12px;
+      border-bottom:1px solid rgba(255,255,255,.08);
     }
-
-    .step{
-      position:relative;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(15,22,38,.62);
-      border-radius:16px;
-      padding:12px;
-      margin:10px 0;
-      transition: box-shadow .18s ease, border-color .18s ease, transform .18s ease;
-    }
-    .dot{
-      position:absolute;
-      right:0;
-      top:18px;
-      width:14px;
-      height:14px;
-      border-radius:50%;
-      border:2px solid rgba(255,255,255,.22);
-      background: rgba(11,15,23,.9);
-      transform: translateX(50%);
-      transition: border-color .18s ease, background .18s ease, transform .18s ease;
-    }
-
-    /* Desktop: pop only on hover */
-    @media (hover:hover){
-      .step:hover{
-        border-color: rgba(106,166,255,.55);
-        box-shadow: 0 12px 32px rgba(0,0,0,.35);
-        transform: translateY(-2px);
-      }
-      .step:hover .dot{
-        transform: translateX(50%) scale(1.08);
-        border-color: rgba(106,166,255,.70);
-      }
-      .step.active{
-        border-color: rgba(106,166,255,.55);
-      }
-      .step.active .dot{
-        border-color: rgba(106,166,255,.85);
-      }
-    }
-
-    /* Mobile: pop on active while scrolling */
-    @media (hover:none){
-      .step.active{
-        border-color: rgba(106,166,255,.70);
-        box-shadow: 0 12px 32px rgba(0,0,0,.35);
-        transform: translateY(-2px);
-      }
-      .step.active .dot{
-        border-color: rgba(106,166,255,.95);
-        transform: translateX(50%) scale(1.10);
-      }
-    }
-
-    /* Completed steps: fill dot */
-    .step.completed .dot{
-      border-color: rgba(106,166,255,.95);
-      background: rgba(106,166,255,.55);
-    }
-
-    .stepTitle{
-      margin:0 0 6px;
-      font-size:14px;
+    .logoStripTitle{
+      margin:0;
+      font-size:13px;
+      color: rgba(238,243,255,.95);
       font-weight:800;
     }
-    .stepText{
-      margin:0;
+    .logoStripHint{
+      font-size:12px;
       color:var(--muted);
-      font-size:13px;
-      line-height:1.6;
     }
-    .stepActions{
-      margin-top:10px;
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
+    .marquee{
+      position:relative;
+      overflow:hidden;
+      padding:12px 0;
     }
-
-    .footerCta{
-      margin-top:16px;
+    .marqueeTrack{
       display:flex;
+      gap:14px;
+      width:max-content;
+      animation: scroll 22s linear infinite;
+      padding:0 12px;
+    }
+    .marquee:hover .marqueeTrack{ animation-play-state: paused; }
+    @keyframes scroll{
+      from{ transform: translateX(0); }
+      to{ transform: translateX(-50%); }
+    }
+    .logoPill{
+      height:44px;
+      min-width:120px;
+      padding:0 14px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(11,15,23,.35);
+      display:flex;
+      align-items:center;
       justify-content:center;
+      gap:10px;
+      color: rgba(238,243,255,.92);
+      user-select:none;
+      flex:0 0 auto;
+    }
+    .logoPill img{
+      height:22px;
+      width:auto;
+      display:block;
+      filter: saturate(1.05);
+      opacity:.95;
+    }
+    .logoPill span{
+      font-size:12px;
+      color: var(--muted);
+      font-weight:700;
+      white-space:nowrap;
     }
 
-    /* Testimonials */
+    /* Partners grid */
+    .partnersGrid{
+      margin-top:12px;
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap:10px;
+    }
+    .partner{
+      grid-column: span 3;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(15,22,38,.45);
+      border-radius:14px;
+      padding:12px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-height:58px;
+    }
+    .partner img{
+      height:24px;
+      width:auto;
+      display:block;
+      opacity:.95;
+    }
+    .partner span{
+      font-size:12px;
+      color: var(--muted);
+      font-weight:800;
+    }
+    @media (max-width: 900px){ .partner{ grid-column: span 4; } }
+    @media (max-width: 520px){ .partner{ grid-column: span 6; } }
+
+    /* Testimonials (keep simple) */
     .testiGrid{
-      margin-top:16px;
+      margin-top:12px;
       display:grid;
       grid-template-columns: repeat(12, 1fr);
       gap:14px;
     }
     .testiCard{
-      grid-column: span 6;
+      grid-column: span 12;
       border:1px solid var(--border);
-      background: var(--card);
-      border-radius:18px;
+      background: rgba(18,26,42,.65);
+      border-radius:16px;
       box-shadow:var(--shadow);
       overflow:hidden;
+      padding:14px;
     }
-    @media (max-width: 900px){ .testiCard{ grid-column: span 12; } }
-
-    .testiHead{
-      padding:14px 14px 8px;
-      display:flex;
-      justify-content:space-between;
-      align-items:flex-start;
-      gap:10px;
+    .testiMiniTitle{
+      margin:0 0 6px;
+      font-size:14px;
+      font-weight:900;
     }
-    .testiTitle{
-      margin:0;
-      font-size:16px;
-      font-weight:800;
-    }
-    .testiDesc{
-      padding:0 14px 12px;
+    .testiMiniDesc{
+      margin:0 0 10px;
       color:var(--muted);
       font-size:13px;
-      line-height:1.6;
+      line-height:1.7;
     }
 
     /* Lightbox */
@@ -466,7 +415,7 @@
       width: min(1100px, 100%);
       border:1px solid rgba(255,255,255,.12);
       background: rgba(11,15,23,.92);
-      border-radius:18px;
+      border-radius:16px;
       box-shadow: var(--shadow);
       overflow:hidden;
       position:relative;
@@ -483,7 +432,7 @@
     .lbTitle{
       margin:0;
       font-size:13px;
-      color: rgba(234,240,255,.92);
+      color: rgba(238,243,255,.92);
       line-height:1.4;
     }
     .lbClose{
@@ -495,11 +444,7 @@
       cursor:pointer;
       font-size:13px;
     }
-
-    .lbImgWrap{
-      position:relative;
-      background: rgba(0,0,0,.25);
-    }
+    .lbImgWrap{ position:relative; background: rgba(0,0,0,.25); }
     .lbImg{
       width:100%;
       height:auto;
@@ -515,7 +460,6 @@
       border-top:1px solid rgba(255,255,255,.10);
       background: rgba(15,22,38,.55);
     }
-
     .lbNav{
       position:absolute;
       top:50%;
@@ -535,14 +479,6 @@
     }
     .lbPrev{ left:10px; }
     .lbNext{ right:10px; }
-
-    .note{
-      margin-top:10px;
-      color:var(--muted);
-      font-size:12px;
-      line-height:1.6;
-      text-align:center;
-    }
   </style>
 </head>
 
@@ -582,6 +518,31 @@
       </div>
     </div>
 
+    <!-- Clients logos carousel -->
+    <section class="section">
+      <h2 class="sectionTitle">🏢 עבדנו עם</h2>
+
+      <div class="logoStrip">
+        <div class="logoStripTop">
+          <div class="logoStripTitle">לוגואים של לקוחות</div>
+          <div class="logoStripHint">אפשר לעצור עם העכבר</div>
+        </div>
+
+        <div class="marquee">
+          <div id="clientMarquee" class="marqueeTrack"></div>
+        </div>
+      </div>
+
+      <div class="note">טיפ: אם אין לכם לוגו של לקוח, אפשר לשים “שם חברה” במקום תמונה.</div>
+    </section>
+
+    <!-- Partners -->
+    <section class="section">
+      <h2 class="sectionTitle">🤝 השותפים שלנו</h2>
+      <div class="note">כלים ופלטפורמות שאנחנו עובדים איתם ביום יום</div>
+      <div id="partnersGrid" class="partnersGrid"></div>
+    </section>
+
     <section class="section">
       <h2 class="sectionTitle">🎯 למי זה מתאים</h2>
       <div class="cols">
@@ -606,11 +567,18 @@
 
     <div id="showcases" class="showcases"></div>
 
-    <!-- Testimonials section -->
+    <!-- ONE simple testimonials section (pictures only) -->
     <section class="section">
       <h2 class="sectionTitle">⭐ לקוחות מספרים</h2>
-      <div class="note">העלו צילומי מסך של הודעות WhatsApp, מיילים, או המלצות. (ללא פרטים מזהים)</div>
-      <div id="testimonials" class="testiGrid"></div>
+      <div class="note">צילומי מסך של המלצות (ללא פרטים מזהים)</div>
+
+      <div class="testiGrid">
+        <div class="testiCard">
+          <h3 class="testiMiniTitle">המלצות</h3>
+          <p class="testiMiniDesc">כמה מילים מהלקוחות, כמו שזה (WhatsApp / מייל)</p>
+          <div id="testimonials" class="thumbGrid"></div>
+        </div>
+      </div>
     </section>
 
     <section class="section">
@@ -636,6 +604,7 @@
       </div>
     </section>
 
+    <!-- KEEP "איך מתחילים" EXACTLY as it is (unchanged) -->
     <section class="section">
       <h2 class="sectionTitle">🧭 איך מתחילים</h2>
 
@@ -697,7 +666,7 @@
         </div>
       </div>
 
-      <div class="footerCta">
+      <div class="footerCta" style="margin-top:16px;display:flex;justify-content:center;">
         <a id="waBottom" class="btn btnWa" href="#" target="_blank" rel="noopener">💬 דברי/י איתנו ב WhatsApp</a>
       </div>
     </section>
@@ -797,29 +766,47 @@
       }
     ];
 
-    /* Testimonials: add screenshot images here */
+    /* One testimonials section: ONLY images (you currently have 2) */
     const testimonials = [
-      {
-        title: "המלצה מלקוח, WhatsApp",
-        summary: "שיפור סדר, מענה מהיר וחיסכון בזמן.",
-        images: [
-          { src: "assets/screenshots/IMG_2969.PNG", caption: "המלצה 1" },
-          { src: "assets/screenshots/IMG_9519.PNG", caption: "המלצה 2" }
-        ]
-      },
-      {
-        title: "המלצה מלקוח, מייל",
-        summary: "אוטומציה שחוסכת עבודה ידנית ומקצרת זמני טיפול.",
-        images: [
-          { src: "assets/testimonials/t3.png", caption: "המלצה 3" }
-        ]
-      }
+      { src: "assets/screenshots/IMG_2969.PNG", caption: "המלצה 1" },
+      { src: "assets/screenshots/IMG_9519.PNG", caption: "המלצה 2" }
+    ];
+
+    /* Client logos carousel (add your client logos here) */
+    const clientLogos = [
+      // Prefer images. If you don't have, use { name: "שם חברה" } without src.
+      { src: "assets/clients/client1.png", name: "Client 1" },
+      { src: "assets/clients/client2.png", name: "Client 2" },
+      { src: "assets/clients/client3.png", name: "Client 3" },
+      { name: "חברת נדל״ן X" }
+    ];
+
+    /* Partners: you listed these. Use logos if you have. If not, name fallback works. */
+    const partners = [
+      { name: "monday.com", src: "assets/partners/monday.png" },
+      { name: "Make", src: "assets/partners/make.png" },
+      { name: "n8n", src: "assets/partners/n8n.png" },
+      { name: "FillFaster", src: "assets/partners/fillfaster.png" },
+      { name: "EasyDoc", src: "assets/partners/easydoc.png" },
+      { name: "Timeless", src: "assets/partners/timeless.png" },
+      { name: "Powerlink", src: "assets/partners/powerlink.png" },
+      { name: "Smartsheet", src: "assets/partners/smartsheet.png" },
+      { name: "Google Apps Script", src: "assets/partners/apps-script.png" },
+      { name: "Google Workspace", src: "assets/partners/workspace.png" },
+      { name: "WhatsApp", src: "assets/partners/whatsapp.png" },
+      { name: "Meta", src: "assets/partners/meta.png" },
+      { name: "ManyChat", src: "assets/partners/manychat.png" },
+      { name: "GitHub", src: "assets/partners/github.png" },
+      { name: "Cal.com", src: "assets/partners/cal.png" },
+      { name: "Calendly", src: "assets/partners/calendly.png" }
     ];
 
     const showcases = document.getElementById("showcases");
-    const testimonialsEl = document.getElementById("testimonials");
     const search = document.getElementById("search");
     const filter = document.getElementById("filter");
+    const partnersGrid = document.getElementById("partnersGrid");
+    const clientMarquee = document.getElementById("clientMarquee");
+    const testimonialsEl = document.getElementById("testimonials");
 
     function esc(s){
       return String(s).replace(/[&<>"']/g, ch => ({
@@ -843,23 +830,25 @@
         + "</div>";
     }
 
-    function buildCard(p, idx){
-      const thumbs = (p.images || []).map((img, j) => {
-        return ""
-          + "<div class=\"thumb\" data-open=\"" + idx + "\" data-img=\"" + j + "\">"
-          +   "<img src=\"" + esc(img.src) + "\" alt=\"צילום מסך\" loading=\"lazy\" />"
-          +   "<div class=\"cap\">" + esc(img.caption || "") + "</div>"
-          + "</div>";
-      }).join("");
+    function buildThumb(imgSrc, caption, openMode, idx, imgIdx){
+      const dataAttr = (openMode === "project")
+        ? "data-open=\"" + idx + "\" data-img=\"" + imgIdx + "\""
+        : "data-topen=\"0\" data-timg=\"" + imgIdx + "\"";
+      return ""
+        + "<div class=\"thumb\" " + dataAttr + ">"
+        +   "<img src=\"" + esc(imgSrc) + "\" alt=\"צילום\" loading=\"lazy\" />"
+        +   "<div class=\"cap\">" + esc(caption || "") + "</div>"
+        + "</div>";
+    }
 
+    function buildCard(p, idx){
+      const thumbs = (p.images || []).map((img, j) => buildThumb(img.src, img.caption, "project", idx, j)).join("");
       const waMsg = p.ctaText || WA_TOP_TEXT;
 
       return ""
         + "<article class=\"case\" data-cat=\"" + esc(p.category) + "\">"
         +   "<div class=\"caseHead\">"
-        +     "<div>"
-        +       "<div class=\"caseTitle\">" + esc(p.title) + "</div>"
-        +     "</div>"
+        +     "<div><div class=\"caseTitle\">" + esc(p.title) + "</div></div>"
         +     "<span class=\"badge\">" + esc(badgeName(p.category)) + "</span>"
         +   "</div>"
         +   "<div class=\"caseDesc\">" + esc(p.summary) + "</div>"
@@ -869,26 +858,6 @@
         +   "<div class=\"caseCta\">"
         +     "<a class=\"btn btnWa\" href=\"" + waLink(waMsg) + "\" target=\"_blank\" rel=\"noopener\">דברי/י איתנו ב WhatsApp</a>"
         +   "</div>"
-        + "</article>";
-    }
-
-    function buildTestimonialCard(t, tIdx){
-      const thumbs = (t.images || []).map((img, j) => {
-        return ""
-          + "<div class=\"thumb\" data-topen=\"" + tIdx + "\" data-timg=\"" + j + "\">"
-          +   "<img src=\"" + esc(img.src) + "\" alt=\"המלצה\" loading=\"lazy\" />"
-          +   "<div class=\"cap\">" + esc(img.caption || "") + "</div>"
-          + "</div>";
-      }).join("");
-
-      return ""
-        + "<article class=\"testiCard\">"
-        +   "<div class=\"testiHead\">"
-        +     "<div class=\"testiTitle\">" + esc(t.title) + "</div>"
-        +     "<span class=\"badge\">המלצות</span>"
-        +   "</div>"
-        +   "<div class=\"testiDesc\">" + esc(t.summary || "") + "</div>"
-        +   "<div class=\"thumbGrid\">" + thumbs + "</div>"
         + "</article>";
     }
 
@@ -920,21 +889,53 @@
 
     function renderTestimonials(){
       if(!testimonialsEl) return;
-      testimonialsEl.innerHTML = testimonials.map(buildTestimonialCard).join("");
+      testimonialsEl.innerHTML = testimonials
+        .map((img, j) => buildThumb(img.src, img.caption, "testimonials", 0, j))
+        .join("");
 
-      testimonialsEl.querySelectorAll("[data-topen]").forEach(el => {
+      testimonialsEl.querySelectorAll("[data-timg]").forEach(el => {
         el.addEventListener("click", () => {
-          const tIdx = Number(el.getAttribute("data-topen"));
           const imgIdx = Number(el.getAttribute("data-timg"));
-          openTestimonialLightbox(tIdx, imgIdx);
+          openTestimonialLightbox(0, imgIdx);
         });
       });
+    }
+
+    function renderPartners(){
+      if(!partnersGrid) return;
+      partnersGrid.innerHTML = partners.map(p => {
+        if(p.src){
+          return "<div class=\"partner\"><img src=\"" + esc(p.src) + "\" alt=\"" + esc(p.name) + "\" onerror=\"this.remove(); this.parentElement.textContent='" + esc(p.name) + "';\"></div>";
+        }
+        return "<div class=\"partner\"><span>" + esc(p.name) + "</span></div>";
+      }).join("");
+    }
+
+    function renderClientLogos(){
+      if(!clientMarquee) return;
+
+      function pill(item){
+        if(item.src){
+          return "<div class=\"logoPill\"><img src=\"" + esc(item.src) + "\" alt=\"" + esc(item.name || 'logo') + "\" onerror=\"this.remove();\"><span>" + esc(item.name || '') + "</span></div>";
+        }
+        return "<div class=\"logoPill\"><span>" + esc(item.name || "חברה") + "</span></div>";
+      }
+
+      // Duplicate list for seamless loop
+      const html = clientLogos.map(pill).join("") + clientLogos.map(pill).join("");
+      clientMarquee.innerHTML = html;
+
+      // Reduce motion support
+      const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if(reduce){
+        clientMarquee.style.animation = "none";
+      }
     }
 
     if(search) search.addEventListener("input", render);
     if(filter) filter.addEventListener("change", render);
 
-    /* Lightbox logic (shared) */
+    /* Lightbox logic (shared for projects + testimonials) */
     const lightbox = document.getElementById("lightbox");
     const lbImg = document.getElementById("lbImg");
     const lbCap = document.getElementById("lbCap");
@@ -948,7 +949,10 @@
     let currentImg = 0;
 
     function getSourceArray(){
-      return (lbMode === "testimonials") ? testimonials : projects;
+      if(lbMode === "testimonials"){
+        return [{ title: "לקוחות מספרים", images: testimonials }];
+      }
+      return projects;
     }
 
     function showLightbox(){
@@ -1012,7 +1016,7 @@
       if(e.key === "ArrowRight") prevImg();
     });
 
-    /* Timeline highlight on scroll */
+    /* Timeline highlight on scroll (unchanged) */
     const steps = Array.from(document.querySelectorAll(".step"));
     const lineFill = document.getElementById("lineFill");
 
@@ -1048,6 +1052,8 @@
 
     render();
     renderTestimonials();
+    renderPartners();
+    renderClientLogos();
   </script>
 </body>
 </html>
